@@ -30,6 +30,8 @@ for (i in 1:length(links_list)) {
 }
 
 
+## Plot examples of travel times (1 week = 10080 minutes)
+
 i=1
 link = links_list[i]
 link_data = m_data_selected$travel_time[m_data_selected$link_id==link]
