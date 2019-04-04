@@ -21,26 +21,26 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
 1. Open R and Run 01Export_Link_to_CSV.R
   * Input : Clean Travel Time data
   * Output: 
-    i. One CSV file per link containing the Travel Time
-    ii. Example plots of travel times
+    1. One CSV file per link containing the Travel Time
+    2. Example plots of travel times
 2. Open MATLAB and Run 02Separate_Background_Spikes.m
   * Input : One CSV per link containing Travel Time data
   * Output: Structured in a different folder per wavelet used
-    i. Two CSV files per link. One containing the background and the other containing the Spikes
-    ii. One plot per link showing Original Travel Time and Reconstructed Series
-    iii. One plot per link showing the difference between Original and Reconstructed Series
+    1. Two CSV files per link. One containing the background and the other containing the Spikes
+    2. One plot per link showing Original Travel Time and Reconstructed Series
+    3. One plot per link showing the difference between Original and Reconstructed Series
 3. Go back to R and run 03Profiles_calculation.R
   * Input : 
-    i. Clean Travel Time Data
-    ii. Two CSV files per link. One containing the background and the other containing the Spikes
+    1. Clean Travel Time Data
+    2. Two CSV files per link. One containing the background and the other containing the Spikes
   * Output: 
-    i. Plots for Mean Relative Absolute Error (MARE) across the times of the day in three flavors (Normal, Only Negative (Overprediction), Density Scaled)
-    ii. Plots for MARE or Root Mean Squared Error (RMSE) measured from quantiles 1, 95, 99, and a user defined one (default:50).
-    iii. Plots for the MARE as a timeseries for the 4 predicted weeks in three flavors (Normal, Only Negative (Overprediction), Density Scaled.
+    1. Plots for Mean Relative Absolute Error (MARE) across the times of the day in three flavors (Normal, Only Negative (Overprediction), Density Scaled)
+    2. Plots for MARE or Root Mean Squared Error (RMSE) measured from quantiles 1, 95, 99, and a user defined one (default:50).
+    3. Plots for the MARE as a timeseries for the 4 predicted weeks in three flavors (Normal, Only Negative (Overprediction), Density Scaled.
 4. In R, run 04Plot_wavelet_decomposed.R
   * Input : 
-    i. Clean Travel Time Data
-    ii. One CSV files per link containing the Background Series.
+    1. Clean Travel Time Data
+    2. One CSV files per link containing the Background Series.
   * Output: 
-    i. Spectrogram with timeseries data for the Original Travel Time
-    ii. Spectrogram of Wavelet Transform with timeseries data for the Background Series (Spikes identified and removed).
+    1. Spectrogram with timeseries data for the Original Travel Time
+    2. Spectrogram of Wavelet Transform with timeseries data for the Background Series (Spikes identified and removed).
