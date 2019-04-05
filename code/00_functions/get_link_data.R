@@ -21,7 +21,8 @@ get_link_data = function(mX, i, wavelet_name, link) {
   flow <- m_data_selected$traffic_flow[m_data_selected$link_id == link]
   flow[is.na(flow)] = median(flow, na.rm = T)
   
-  spike_flag = spikes>1
+  spike_flag = spikes>3
+  
   #plot(spikes, type='l')
   
   newspikes = spikes

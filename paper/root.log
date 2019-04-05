@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.9.1)  3 APR 2019 13:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.9.1)  4 APR 2019 17:48
 entering extended mode
 **./root.tex
 (root.tex
@@ -794,29 +794,31 @@ File: ./images/flow_temp.pdf Graphic file (type pdf)
 <use ./images/flow_temp.pdf>
 Package pdftex.def Info: ./images/flow_temp.pdf  used on input line 220.
 (pdftex.def)             Requested size: 245.71811pt x 173.74167pt.
-<./images/m6_daytime.pdf, id=116, 867.24pt x 650.43pt>
-File: ./images/m6_daytime.pdf Graphic file (type pdf)
-<use ./images/m6_daytime.pdf>
-Package pdftex.def Info: ./images/m6_daytime.pdf  used on input line 226.
-(pdftex.def)             Requested size: 245.71811pt x 184.28275pt.
-<./images/m6_quantile_rms.pdf, id=117, 867.24pt x 650.43pt>
-File: ./images/m6_quantile_rms.pdf Graphic file (type pdf)
-<use ./images/m6_quantile_rms.pdf>
-Package pdftex.def Info: ./images/m6_quantile_rms.pdf  used on input line 232.
-(pdftex.def)             Requested size: 245.71811pt x 184.28275pt.
-<./images/m11_daytime.pdf, id=118, 867.24pt x 650.43pt>
-File: ./images/m11_daytime.pdf Graphic file (type pdf)
-<use ./images/m11_daytime.pdf>
-Package pdftex.def Info: ./images/m11_daytime.pdf  used on input line 238.
-(pdftex.def)             Requested size: 245.71811pt x 184.28275pt.
-<./images/m11_quantile_rms.pdf, id=119, 867.24pt x 650.43pt>
-File: ./images/m11_quantile_rms.pdf Graphic file (type pdf)
-<use ./images/m11_quantile_rms.pdf>
-Package pdftex.def Info: ./images/m11_quantile_rms.pdf  used on input line 244.
+<./images/M6_daytime_8_12.pdf, id=116, 867.24pt x 578.16pt>
+File: ./images/M6_daytime_8_12.pdf Graphic file (type pdf)
+<use ./images/M6_daytime_8_12.pdf>
+Package pdftex.def Info: ./images/M6_daytime_8_12.pdf  used on input line 226.
+(pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
+<./images/M6_quantile_1_rms_8_12.pdf, id=117, 867.24pt x 578.16pt>
+File: ./images/M6_quantile_1_rms_8_12.pdf Graphic file (type pdf)
+<use ./images/M6_quantile_1_rms_8_12.pdf>
+Package pdftex.def Info: ./images/M6_quantile_1_rms_8_12.pdf  used on input lin
+e 232.
+(pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
+<./images/M11_daytime_8_12.pdf, id=118, 867.24pt x 578.16pt>
+File: ./images/M11_daytime_8_12.pdf Graphic file (type pdf)
+<use ./images/M11_daytime_8_12.pdf>
+Package pdftex.def Info: ./images/M11_daytime_8_12.pdf  used on input line 238.
 
-(pdftex.def)             Requested size: 245.71811pt x 184.28275pt.
-[3 <./images/WT_combined_1500_600.png> <./images/flow_temp.pdf> <./images/m6_da
-ytime.pdf>]
+(pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
+<./images/M11_quantile_1_rms_8_12.pdf, id=119, 867.24pt x 578.16pt>
+File: ./images/M11_quantile_1_rms_8_12.pdf Graphic file (type pdf)
+<use ./images/M11_quantile_1_rms_8_12.pdf>
+Package pdftex.def Info: ./images/M11_quantile_1_rms_8_12.pdf  used on input li
+ne 244.
+(pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
+[3 <./images/WT_combined_1500_600.png> <./images/flow_temp.pdf> <./images/M6_da
+ytime_8_12.pdf>]
 
 LaTeX Warning: Reference `fig:acf' on page 4 undefined on input line 278.
 
@@ -825,8 +827,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 276--280
 
  []
 
-[4 <./images/m6_quantile_rms.pdf> <./images/m11_daytime.pdf> <./images/m11_quan
-tile_rms.pdf>]
+[4 <./images/M6_quantile_1_rms_8_12.pdf> <./images/M11_daytime_8_12.pdf> <./ima
+ges/M11_quantile_1_rms_8_12.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
@@ -848,62 +850,62 @@ File: omlptm.fd
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 365.
 
-Overfull \hbox (3.43028pt too wide) in paragraph at lines 363--375
+Overfull \hbox (3.43028pt too wide) in paragraph at lines 363--373
  [] 
  []
 
 
-LaTeX Warning: Reference `fig:m25q' on page 5 undefined on input line 412.
+LaTeX Warning: Reference `fig:m25q' on page 5 undefined on input line 410.
 
 
-LaTeX Warning: Reference `fig:m6daytime' on page 5 undefined on input line 438.
+LaTeX Warning: Reference `fig:m6daytime' on page 5 undefined on input line 436.
 
 
 
-LaTeX Warning: Reference `fig:m11daytime' on page 5 undefined on input line 438
+LaTeX Warning: Reference `fig:m11daytime' on page 5 undefined on input line 436
 .
 
 
-LaTeX Warning: Reference `fig:m25daytime' on page 5 undefined on input line 438
+LaTeX Warning: Reference `fig:m25daytime' on page 5 undefined on input line 436
 .
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 504--511
+Underfull \hbox (badness 1460) in paragraph at lines 556--563
 \OT1/ptm/m/n/10 com-pli-ance with these re-quire-ments is to per-form the
  []
 
 
-Underfull \hbox (badness 2980) in paragraph at lines 504--511
+Underfull \hbox (badness 2980) in paragraph at lines 556--563
 \OT1/ptm/m/n/10 de-com-po-si-tion by ap-ply-ing a Wavelet Trans-form and
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 504--511
+Underfull \hbox (badness 1365) in paragraph at lines 556--563
 \OT1/ptm/m/n/10 sep-a-rat-ing back-ground from spikes based on sta-tis-ti-cal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 504--511
+Underfull \hbox (badness 10000) in paragraph at lines 556--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 504--511
+Underfull \hbox (badness 10000) in paragraph at lines 556--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 504--511
+Underfull \hbox (badness 10000) in paragraph at lines 556--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 504--511
+Underfull \hbox (badness 10000) in paragraph at lines 556--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 504--511
+Underfull \hbox (badness 10000) in paragraph at lines 556--563
 
  []
 
@@ -919,14 +921,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 541.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 593.
 [6] [7
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 541.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 593.
  (root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 541.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 541.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 593.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 593.
 Package rerunfilecheck Info: File `root.out' has not changed.
 (rerunfilecheck)             Checksum: 702C7F150D6158EF8A8024070D95BB89;1125.
 
@@ -936,12 +938,12 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 541.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 593.
  ) 
 Here is how much of TeX's memory you used:
  8613 strings out of 492973
- 131507 string characters out of 3123149
- 240504 words of memory out of 3000000
+ 131627 string characters out of 3123149
+ 242520 words of memory out of 3000000
  12272 multiletter control sequences out of 15000+200000
  46924 words of font info for 103 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -967,7 +969,7 @@ a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
 ts/type1/urw/times/utmbi8a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/acabrejasegea/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (7 pages, 1049027 bytes).
+Output written on root.pdf (7 pages, 1050460 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  83 named destinations out of 1000 (max. 500000)

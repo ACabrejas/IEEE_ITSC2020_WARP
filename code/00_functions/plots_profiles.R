@@ -42,7 +42,8 @@ relative_error_daytime = function(error_type) {
   
   # Plot
   ggplot(data = plot_data_long, aes(x=time, y=value, colour=variable, group = variable)) + 
-    ylab(paste(error_type,"Error", sep = " ")) + 
+    #ylab(paste(error_type,"Error", sep = " ")) + 
+    ylab("MARE") + 
     xlab("Time of the day") +
     #theme(axis.title.x = element_blank()) + 
     geom_line(size=1.5) + theme(text = element_text(size=28),axis.text.x = element_text(angle = 0)) + 
@@ -51,8 +52,10 @@ relative_error_daytime = function(error_type) {
     scale_colour_discrete(name  =label_mx, labels=c("Published Profile", "Wavelet Hybrid Profile", "Segmentation Profile"))+
                          # breaks=c("Published", "Hybrid", "Segmentation)")+
                         #  labels=c("Published Model", "Wavelet Hybrid Model", "Segmentation Model")  +
-    theme(legend.position = c(0.19, 0.9)) + theme(legend.text=element_text(size=24)) 
+    theme(legend.position = c(0.19, 0.88)) + theme(legend.text=element_text(size=24)) 
     #ggtitle(paste("Average", error_type, "error for all links across times of the day"))
+  plotname = paste('../paper/images/',label_mx,'_daytime_8_12.pdf', sep = '')
+  ggsave(plotname, height = 8, width = 12)
 }
 
 ###########################################################################################################
@@ -104,11 +107,13 @@ relative_error_timeseries = function(error_type, method, spike_parameter) {
     scale_x_continuous(breaks=axis_breaks, labels=custom_ticks) +
     theme(legend.title=element_blank()) + 
     ggtitle(paste("Average", error_type,"error from prediction date", sep = " "))
+  plotname = paste('../paper/images/',label_mx,'_error_timeseries.pdf', sep = '')
+  ggsave(plotname, height = 8, width = 12)
 }
 
 #######################################################################################################################################
 
-quantile_error = function(quantile, error_type, method, spike_parameter) {
+quantile_error = function(quantile, error_type, spike_parameter) {
   
   false_x_axis = 1:100
   # Create dataframe to plot depending on the needed data
@@ -231,7 +236,7 @@ quantile_error = function(quantile, error_type, method, spike_parameter) {
     #ggtitle(paste("Average AB/RMS error for all links across percentiles of travel time", sep = " "))
   
   ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
-    ylab("Relative Error") + 
+    ylab("MARE") + 
     labs(x="Percentile of Travel Time")+
     #theme(axis.title.x = element_blank()) + 
     geom_line(size=1.5) + theme(text = element_text(size=24),axis.text.x = element_text(angle = 0)) + 
@@ -240,5 +245,9 @@ quantile_error = function(quantile, error_type, method, spike_parameter) {
     scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
                           labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
     theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
-
+  
+  plotname = paste('../paper/images/',label_mx,'_quantile_',quantile,'_', error_type,'_8_12.pdf', sep = '')
+  ggsave(plotname, height = 8, width = 12)
+  
+  
 }

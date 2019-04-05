@@ -223,25 +223,25 @@ In this way, for the $i-th$ minute of a week and using a training set composed o
 \end{figure}
 
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/m6_daytime.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M6_daytime_8_12.pdf}}
 	\caption{Things}
 	\label{fig:m6dt}
 \end{figure}
 
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/m6_quantile_rms.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M6_quantile_1_rms_8_12.pdf}}
 	\caption{Things}
 	\label{fig:m6q}
 \end{figure}
 
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/m11_daytime.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M11_daytime_8_12.pdf}}
 	\caption{Things}
 	\label{fig:m11dt}
 \end{figure}
 
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/m11_quantile_rms.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M11_quantile_1_rms_8_12.pdf}}
 	\caption{Things}
 	\label{fig:m11q}
 \end{figure}
@@ -364,11 +364,9 @@ In order to create the final Seasonal-Spectral Hybrid profile (Hybrid), one of t
 			\hline
 			\textbf{\% rel. error}&{\textless -25\%}&{-25\%\textbf{ to }-15\%}&{-15\%\textbf{ to }-5\%}&{-5\%\textbf{ to }5\%}&{5\%\textbf{ to }15\%}&{15 \%\textbf{ to }25\%}&{\textgreater 25\%}\\
 			\hline
-			M6& 1.58& 0.60& 3.77& 88.01& 5.97& 0.06& 0.01\\
+			M6& 1.57& 0.51& 3.22& 81.73& 12.14& 0.70& 0.13\\
 			\hline
-			M11& 0.80& 0.35& 4.07& 86.15& 7.97& 0.49& 0.15\\
-			\hline
-			M25& 3.85& 2.73& 10.42& 75.12& 7.29& 0.33& 0.28\\
+			M11& 0.78& 0.32& 3.29& 81.33& 12.47& 1.09& 0.73\\
 			\hline
 		\end{tabular}
 		\label{mapeglobal}
@@ -442,39 +440,95 @@ In the case of the M25, which is congested on a regular basis, the errors in the
 Even in this case, the proposed algorithm performs significantly better than any of the other two, except for a brief window between 6-7AM when it is outperformed by the NS Model.
 
 \begin{table}[htbp]
-	\caption{MARE per Link on M6}
+	\caption{MARE per Link on M6 and M11}
 	\begin{center}
 		\begin{tabular}{|c|c|}
 			\hline
-			\textbf{Link}&{\textbf{MARE}} \\
+			\textbf{Links M6}&{\textbf{MARE}} \\
 			\hline
-			117007401& 0.0211\\
+			117007401& 0.0290\\
 			\hline
-			117007501& 0.0421\\
+			117007501& 0.0680\\
 			\hline
-			117007601& 0.0246\\
+			117007601& 0.0293\\
 			\hline
-			117007801& 0.0480\\
+			117007801& 0.0826\\
 			\hline
-			117007901& 0.0308\\
+			117007901& 0.0435\\
 			\hline
-			117008401& 0.0331\\
+			117008401& 0.0484\\
 			\hline
-			117009102& 0.0269\\
+			117009102& 0.0338\\
 			\hline
-			117011901& 0.0235\\
+			117011901& 0.0295\\
 			\hline
-			117012001& 0.0446\\
+			117012001& 0.0584\\
 			\hline
-			117012101& 0.0262\\
+			117012101& 0.0370\\
 			\hline
-			117012201& 0.0431\\
+			117012201& 0.0605\\
 			\hline
-			117012301& 0.0275\\
+			117012301& 0.0379\\
 			\hline
-			117016001& 0.0360\\
+			117016001& 0.0496\\
 			\hline
-			123025901& 0.0189\\
+			123025901& 0.0427\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Links M11}&{\textbf{MARE}} \\
+			\hline
+			199048301& 0.0510\\
+			\hline
+			199048701& 0.0279\\
+			\hline
+			199048801& 0.1053\\
+			\hline
+			199048901& 0.0239\\
+			\hline
+			199049002& 0.0306\\
+			\hline
+			199049101& 0.0213\\
+			\hline
+			199049402& 0.0223\\
+			\hline
+			199049501& 0.0181\\
+			\hline
+			199049702& 0.0297\\
+			\hline
+			199049801& 0.0408\\
+			\hline
+			199050002& 0.0445\\
+			\hline
+			199050101& 0.0272\\
+			\hline
+			199050202& 0.0288\\
+			\hline
+			199050901& 0.0433\\
+			\hline
+			199063301& 0.1203\\
+			\hline
+			199063701& 0.0500\\
+			\hline
+			199063801& 0.0265\\
+			\hline
+			199064203& 0.0230\\
+			\hline
+			199065202& 0.0259\\
+			\hline
+			200021668& 0.0280\\
+			\hline
+			200024801& 0.0233\\
+			\hline
+			200028639& 0.0241\\
+			\hline
+			200028641& 0.0188\\
+			\hline
+			200028645& 0.0435\\
+			\hline
+			200028648& 0.0499\\
 			\hline
 		\end{tabular}
 		\label{tab1}
@@ -489,11 +543,9 @@ Even in this case, the proposed algorithm performs significantly better than any
 			\hline
 			\textbf{Motorway}&{\textbf{MARE}}&{\textbf{RMSE [s]}} \\
 			\hline
-			M6& 0.0318& 0.0368\\
+			M6& 0.0385& 0.0464\\
 			\hline
-			M11& 0.0300& 0.0355\\
-			\hline
-			M25& 0.0552& 0.0667\\
+			M11& 0.0379& 0.0484\\
 			\hline
 		\end{tabular}
 		\label{mapeglobal}

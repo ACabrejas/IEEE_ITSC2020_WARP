@@ -10,7 +10,7 @@ library(reshape2)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Choose motorway
-mX <- "m6"
+mX <- "m25"
 
 wavelet_name = "morse"
 
@@ -102,15 +102,15 @@ relative_error_daytime("Negative")
 relative_error_daytime("Density")
 
 # Results percentile errors
-quantile_error(quantile = 1, method ="ab")
-quantile_error(quantile = 95, method ="ab")
-quantile_error(quantile = 99, method ="ab")
-quantile_error(quantile = custom_quantile_start, method ="ab")
+quantile_error(quantile = 1, error_type = "ab")
+quantile_error(quantile = 95, error_type ="ab")
+quantile_error(quantile = 99, error_type ="ab")
+quantile_error(quantile = custom_quantile_start, error_type ="ab")
 
-quantile_error(quantile = 1, method ="rms")
-quantile_error(quantile = 95, method ="rms")
-quantile_error(quantile = 99, method ="rms")
-quantile_error(quantile = custom_quantile_start, method ="rms")
+quantile_error(quantile = 1, error_type ="rms")
+quantile_error(quantile = 95, error_type ="rms")
+quantile_error(quantile = 99, error_type ="rms")
+quantile_error(quantile = custom_quantile_start, error_type ="rms")
 
 # Results relative errors over time
 relative_error_timeseries("Relative")
