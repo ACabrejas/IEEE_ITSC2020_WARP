@@ -35,12 +35,19 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
     2. Two CSV files per link. One containing the background and the other containing the Spikes
   * Output: 
     1. Plots for Mean Relative Absolute Error (MARE) across the times of the day in three flavors (Normal, Only Negative (Overprediction), Density Scaled)
-    2. Plots for MARE or Root Mean Squared Error (RMSE) measured from quantiles 1, 95, 99, and a user defined one (default:50).
+    2. Plots for MARE or Root Mean Squared Error (RMSE) measured from quantiles 1, 95, 99, and a user defined one (default:50)
     3. Plots for the MARE as a timeseries for the 4 predicted weeks in three flavors (Normal, Only Negative (Overprediction), Density Scaled.
 4. In R, run 04Plot_wavelet_decomposed.R
   * Input : 
     1. Clean Travel Time Data
-    2. One CSV files per link containing the Background Series.
+    2. One CSV files per link containing the Background Series
   * Output: 
     1. Spectrogram with timeseries data for the Original Travel Time
-    2. Spectrogram of Wavelet Transform with timeseries data for the Background Series (Spikes identified and removed).
+    2. Spectrogram of Wavelet Transform with timeseries data for the Background Series (Spikes identified and removed)
+5. In R, run 05Precision_measurements.R
+  * Input : Workspace from step 4.
+  * Output:
+    1. MARE and RMSE error per link
+    2. Average MARE and RMSE error per motorway
+    3. Histogram of errors
+    4. Table with % of samples following within different precision limits
