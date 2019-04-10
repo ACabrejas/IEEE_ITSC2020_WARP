@@ -10,7 +10,7 @@ library(reshape2)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Choose motorway
-mX <- "m25"
+mX <- "m11"
 
 wavelet_name = "morse"
 

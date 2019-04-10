@@ -223,29 +223,29 @@ quantile_error = function(quantile, error_type, spike_parameter) {
   }
 
   # Plot
-  ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
-    ylab("Relative Error") + 
-    #xlab("Percentile of travel times") +
-    geom_line(size=1.5) + theme(text = element_text(size=24),axis.text.x = element_text(hjust = 1)) + 
-     labs(x="Percentile of Travel Time")+
-    scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
-    coord_cartesian(xlim = c(0, 100), ylim = c(0,0.35)) +
-    scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
-                          labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
-    theme(text = element_text(size=18),legend.position = c(0.14, 0.90)) 
-    #ggtitle(paste("Average AB/RMS error for all links across percentiles of travel time", sep = " "))
-  
-  ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
-    ylab("MARE") + 
-    labs(x="Percentile of Travel Time")+
-    #theme(axis.title.x = element_blank()) + 
-    geom_line(size=1.5) + theme(text = element_text(size=24),axis.text.x = element_text(angle = 0)) + 
-    scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
-    scale_colour_discrete(name  =label_mx)+
-    scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
-                          labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
-    theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
-  
+  if (error_type == 'ab') {
+    ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
+      ylab("MARE") + 
+      labs(x="Percentile of Travel Time")+
+      #theme(axis.title.x = element_blank()) + 
+      geom_line(size=1.5) + theme(text = element_text(size=24),axis.text.x = element_text(angle = 0)) + 
+      scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
+      scale_colour_discrete(name  =label_mx)+
+      scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
+                            labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
+      theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
+  } else if (error_type == "rms") {
+    ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
+      ylab("RMSE") + 
+      labs(x="Percentile of Travel Time")+
+      #theme(axis.title.x = element_blank()) + 
+      geom_line(size=1.5) + theme(text = element_text(size=24),axis.text.x = element_text(angle = 0)) + 
+      scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
+      scale_colour_discrete(name  =label_mx)+
+      scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
+                            labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
+      theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
+  }
   plotname = paste('../paper/images/',label_mx,'_quantile_',quantile,'_', error_type,'_8_12.pdf', sep = '')
   ggsave(plotname, height = 8, width = 12)
   

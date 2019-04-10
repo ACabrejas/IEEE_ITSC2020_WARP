@@ -3,12 +3,14 @@
 
 motorway = 'm6';
 
+normalisation = true;
+
 if motorway == 'm6'
-    length = 14;
+    length_links = 14;
 elseif motorway == 'm11'
-    length = 25;
+    length_links = 25;
 elseif motorway == 'm25'
-    length = 61;
+    length_links = 61;
 end
 
 wavelet = 'morse';
@@ -23,16 +25,22 @@ end
 
 f = waitbar(0, 'Progress...')
 
-for j=1:length
+for j=1:length_links
 
-    waitbar(j/length, f, 'Progress...')
+    waitbar(j/length_links, f)
     
     % Load data
     travel_time = csvread(strcat('./02_extracted_link_data/',motorway,'_link_',string(j),'.csv'));
     
+    % Normalisation Step
+    if normalisation
+        norm_factor = max(travel_time);
+        travel_time = travel_time/norm_factor;
+    end
+    
     % Statistics
     tt_mean = mean(travel_time);
-    tt_minus_mean = travel_time; %- tt_mean;
+    tt_minus_mean = travel_time - tt_mean;
     tt_wt = cwt(tt_minus_mean,wavename,1);
     
     % Manually calculate modulus, power, phase
@@ -81,6 +89,14 @@ for j=1:length
     
     % Reconstruction
     background = background + tt_mean;
+    
+    % De-normalization
+    if normalisation
+        background = background * norm_factor;
+        spikes = spikes * norm_factor;
+        travel_time = travel_time * norm_factor;
+    end
+    
     reconstructed = background + spikes;
     
     % Filenames out
@@ -108,7 +124,7 @@ for j=1:length
 
     
 end
-close(f);
+close(f)
 
 %% Reconstruction plot:
 % Plots the Original series, reconstructed background and spikes.
@@ -117,7 +133,8 @@ close(f);
 
 motorway = 'm6';
 wavelet = 'morse';
-link = 1;
+link = 3;
+normalisation = true;
 if wavelet == 'morse'
     wavename = 'morse';
 elseif wavelet == 'morlet'
@@ -127,9 +144,17 @@ elseif wavelet == 'bump'
 end
 travel_time = csvread(strcat('./02_extracted_link_data/',motorway,'_link_',string(link),'.csv'));
 
+
+
+% Normalization step
+if normalisation
+    norm_factor = max(travel_time);
+    travel_time = travel_time/norm_factor;
+end
+
 % Statistics
 tt_mean = mean(travel_time);
-tt_minus_mean = travel_time; %- tt_mean;
+tt_minus_mean = travel_time - tt_mean;
 tt_wt = cwt(tt_minus_mean,wavename,1);
 
 % Manually calculate modulus, power, phase
@@ -176,9 +201,18 @@ end
 background = icwt(background_complex);
 spikes = icwt(spikes_complex);
 
+
 % Reconstruction
 background = background + tt_mean;
+
+if normalisation
+    background = background * norm_factor;
+    spikes = spikes * norm_factor;
+    travel_time = travel_time * norm_factor;
+end
+
 reconstructed = background + spikes;
+
 
 spike_min = 5;
 hold off;

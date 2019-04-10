@@ -47,7 +47,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 
 \title{\LARGE \bf
-Estimating Baseline Travel Times for the UK Strategic Road Network*
+WARWICK algorithm for separating recurrent and outstanding congestion in Motorways and long-term travel time forecasting*
 }
 
 
@@ -71,30 +71,41 @@ Estimating Baseline Travel Times for the UK Strategic Road Network*
 
 
 \begin{abstract}
-We present a new method for long-term estimation of the expected travel time for links on highways and their variation with time.  
-The approach is based on a time series analysis of travel time data from the UK's National Traffic Information Service (NTIS).  
-Time series of travel times are characterised by a noisy background variation exhibiting the expected daily and weekly patterns punctuated by large spikes associated with congestion events. 
-Some spikes are caused by peak hour congestion and some are caused by unforeseen events like accidents. 
-Our algorithm uses thresholding to split the data into background and spike signals, each of which is analysed separately. 
-The the background signal is extracted using spectral filtering. 
-The periodic part of the spike signal is extracted using locally weighted regression (LWR). 
-The final estimated travel time is obtained by recombining these two. 
-We assess our method by cross-validating in several UK motorways. 
-We use 8 weeks of training data and calculate the error of the resulting travel time estimates for a week of test data, repeating this process 4 times. 
-We find that the error is significantly reduced compared to estimates obtained by simple segmentation of the data and compared to the estimates published by the NTIS system.
+We present the new WARWICK method for separating recurrent and outstanding congestion from a travel time time series using wavelets. 
+We train and test this method using 12 weeks of real time travel data gathered at link level in the M6 and M11 in the United Kingdom.
+The approach is based on a time travel series analysis of travel time data from the UK's National Traffic Information Service (NTIS).
+Time series of travel times are characterised by a noisy background component showing the expected seasonal patterns and occasional large spikes associated with congestion events.
+The separation algorithm here presented uses statistical analysis of the Wavelet Transform of the travel times to split the original signal into two signals in the time-frequency domain: background and spikes, and then inverse transform them to use them for forecasting.
+We process and combine 8 weeks of these signals, using spectral filtering and non-parametric locally weighted regression (LWR) to predict travel time in the link in the following week with a resolution of one minute, repeating this process 4 times on a rolling basis.
+We find that the error is meaningfully reduced compared to estimates obtained by basic time segmentation of the data and compared to the estimates published by the NTIS system.
+
+Wavelet
+Augmented
+Regression
+With
+spIkes and
+baCKground
+
 \end{abstract}
 
 \section{Introduction}
-The UK collects and processes data from its Strategic Road Network (SRN) in real time and makes it available through the National Traffic Information Service (NTIS) \cite{NTIS}. 
-NTIS collects speed, flow and travel time data using sensors on the road and in vehicles. 
-The basic building blocks of the SRN are called links -  segments of motorway between 500 and 20000 metres in length.  
-NTIS data is used to assign a travel time profile to each link. 
-Profiles should represent the typical time to traverse a link at a given time of day on a given day of the week and are the topic of study of this paper.
- 
-Profiles clearly vary with day of the week and time of the day but should be relatively stable from one week to the next.
-This stability over time means calculating profiles is different from the problem of short-term forecasting.
-While there is no a-priori mathematical definition of a typical travel time,  we take it to mean the value that minimises the mean absolute relative error (MAPE) with respect to subsequently measured travel times.
-NTIS publishes profile values alongside measured travel times although the methodology used to calculate them is not in the public domain. 
+Incident detection algorithms yield a large number of false alarms and missed detections. This is mainly
+due to random temporal fluctuations or traffic noise that
+makes it difficult to differentiate between recurrent and
+non-recurrent congestion accurately
+
+Highways England (HE) is responsible for most Motorways and major roads in England, comprising the Strategic Road Network (SRN).
+The SRN is monitored by the National Traffic Information System \cite{NTIS}, which collects and processes travel time, speed, flow and overhead space data in real time using sensors on the road and in vehicles.
+The smallest components of the SRN are the so called links, which are segments of motorway between 500 and 20000 metres in length.
+NTIS uses the historic series of real time logged data to assign each link in the network with a traffic profile.
+Traffic profiles contain, for each minute of a day in a given date, the expected travel time to transverse the link to which it is associated. These profile values are published together with the measured travel times, but the methodology followed to calculate them is not publicly available.
+
+While the profiles, in fairly used roads, vary with the day of the week and time of the day, their inter-week variation remains low, with major trends changes taking longer (order of months) than the biggest temporal unit considered (weeks). 
+This display of stability over time, means that calculating profiles is a different problem when compared with short-term forecasting.
+Since there is no a-priori mathematical definition of typical travel times, here, we will take it as the value that minimises the Mean Absolute Relative Error (MARE), when comparing it with the subsequently sampled real travel times.
+
+---
+
 In this paper, we present a novel method for generating profiles for a complete week. 
 Our approach is based on statistical analysis of previous data and does not require any a-priori segmentation of days into classes. 
 Rather patterns of intra- and inter-day variability are learned directly from the data.
@@ -106,24 +117,22 @@ Comparisons between some of these studies and others can be found in \cite{nikov
 Most of these methods have been specifically tuned for the conditions on which they have been developed and transferability to other sites is often not evaluated.
 To assess the transferability of our method, it is tested on three different motorways and scored independently in each of them.
 The method here presented, uses a combination of spectral analysis, tree decisions and Locally Weighted Regression (LWR).
-\section{Examples of travel times} 
+\section{Background and Spikes}
+\subsection{Examples of Travel Times} 
 The most direct variable for measuring the state of traffic over a length of road is the vehicles' travel times. 
+This is normally measured by using induction loops below the lanes, which measure the instantane
 The instantaneous travel time for a given segment of road is the average time that the vehicles currently in it are taking since they enter the segment until they exit it.\\
 
-%\begin{figure}[htbp]
-%	\centerline{\includegraphics[width=\linewidth]{./images/Morlet_Wavelet_Transform_4week_43.png}}
-%	\caption{Things}
-%	\label{fig:travel_time_example}
-%\end{figure}
+
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/Travel_Time.pdf}}
-	\caption{Things}
+	\caption{Measurements of travel time in link 1170079 of the M6 over a period of 28 days.}
 	\label{fig:travel_time}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/ACF_M6_Link3.pdf}}
-	\caption{Things}
+	\caption{Autocorrelation function of the Travel Time series introduced in figure \ref{fig:travel_time} with a maximum lag of 4 weeks.}
 	\label{fig:ACF}
 \end{figure}
 
@@ -135,13 +144,18 @@ The instantaneous travel time for a given segment of road is the average time th
 \end{figure}
 
 
-As it can be seen in Figure \ref{fig:travel_time_example} the travel time remains within a vaguely predictable pattern most of the days, with bounded minima during nights corresponding with the free flow time and with some outliers below this value corresponding to speeding drivers. 
+As it can be seen in Figure \ref{fig:travel_time} the travel time remains within a vaguely predictable pattern most of the days, with bounded minima during nights corresponding with the free flow time and with some outliers below this value corresponding to speeding drivers. 
 Travel time will meaningfully rise as people leave to work and add load to the motorways. 
 This collective behaviour will create the morning traffic jams, which in our data, are partially replicated during the evening rush hour, normally finding a plateau in between. 
 After this, the travel times slowly decay towards the night period of free-flow regime.
 In Figure \ref{fig:travel_time_example}, it can also be seen that there are a series of excursions out of this oscillating yet bounded typical behaviour. 
 In these, the travel time can increase several times fold the usual values.
 These extreme oscillations are much less predictable both in intensity and inter-oscillation period than the recurrent congestion described previously.
+
+\subsection{Separation via Wavelet Transform}
+
+\subsection{Series Recombination}
+
 
 \section{Basic methods for profile estimation}
 \subsection{Use of Exponentially Weighted Moving Average (EWMA)} \label{ewma}
@@ -185,14 +199,8 @@ For each link on a specific date, the required input data consists of one entry 
 	\item Measured travel time
 	\item Profile (expected) travel time 	
 \end{itemize}
+
 \section{Travel Time Prediction Algorithm} \label{algorithm}
-
-%\begin{figure}[htbp]
-%	\centerline{\includegraphics[width=\linewidth]{./images/finalplots/ACF_M6_Link3.pdf}}
-%	\caption{Autocorrelation function of a link in the M6 over a period of 4 weeks, showing seasonal patterns on the daily and weekly periods.}
-%	\label{fig:acf}
-%\end{figure}
-
 Given the cyclic nature of traffic, the aim was a prediction algorithm that could account for the periodic variations and endemic congestion while being resilient to fluctuations and rare events. This algorithm also should:
 \begin{itemize}
 	\item Be robust, mitigating the propagation of isolated events into future forecasts, unlike methods using EWMA.
