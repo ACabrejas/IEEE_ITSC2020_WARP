@@ -1,20 +1,21 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Background and Spikes}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Examples of Travel Times}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Separation via Wavelet Transform}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Series Recombination}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Basic methods for profile estimation}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Use of Exponentially Weighted Moving Average \(EWMA\)}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.2}{Segmentation}{section.3}% 8
-\BOOKMARK [1][-]{section.4}{Data}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Data Gathering and Selection}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Data Contents}{section.4}% 11
-\BOOKMARK [1][-]{section.5}{Travel Time Prediction Algorithm}{}% 12
-\BOOKMARK [2][-]{subsection.5.1}{Naive Segmentation}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.2}{Decomposition in Background and Spikes}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.3}{Spectral Component}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.4}{Seasonality Component}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.5}{Seasonal-Spectral Hybrid Profile}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{Accuracy Results}{}% 18
-\BOOKMARK [1][-]{section.7}{Future Work}{}% 19
-\BOOKMARK [1][-]{section*.1}{References}{}% 20
+\BOOKMARK [2][-]{subsection.1.1}{Background}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Previous Work}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Examples of Travel Times}{}% 4
+\BOOKMARK [1][-]{section.3}{Basic methods for profile estimation}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Use of Exponentially Weighted Moving Average}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Segmentation}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Data}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Data Gathering and Selection}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Data Contents}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Background and Spikes}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Separation via Wavelet Transform}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Series Recombination}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{WARWICK Travel Time Prediction Algorithm}{}% 14
+\BOOKMARK [2][-]{subsection.6.1}{Naive Segmentation \(Null\)}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.2}{WARWICK: Spectral Component}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.3}{WARWICK: Seasonality Component}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.4}{WARWICK Hybrid Profile}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Accuracy Results}{}% 19
+\BOOKMARK [1][-]{section.8}{Future Work}{}% 20
+\BOOKMARK [1][-]{section*.1}{References}{}% 21

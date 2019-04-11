@@ -27,7 +27,7 @@ mean(RMSE)
 
 
 ## DISTRIBUTION OF ERRORS
-bob = hybrid_results$relative_errors$relative_error
+bob = thales_results$relative_errors$relative_error
 breaks = c(-10,-.25,-.15,-.05,.05,.15,.25,10)
 alice = hist(bob, breaks = breaks, freq = F, main = "Histogram of Prediction Relative Errors")
 freq = alice$counts/length(bob)

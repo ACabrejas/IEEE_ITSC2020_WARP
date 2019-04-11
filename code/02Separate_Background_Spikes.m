@@ -133,7 +133,7 @@ close(f)
 
 motorway = 'm6';
 wavelet = 'morse';
-link = 3;
+link = 1;
 normalisation = true;
 if wavelet == 'morse'
     wavename = 'morse';
@@ -216,10 +216,15 @@ reconstructed = background + spikes;
 
 spike_min = 5;
 hold off;
-plot(travel_time)
+plot(travel_time(1:(28*1440+1)))
 hold on;
-plot(background)
+plot(background(1:28*1440+1))
 spikesnew = spikes;
 spikesnew(spikes<spike_min) = 0;
-plot(spikesnew)
+plot(spikesnew(1:28*1440+1))
+xlabel('Time [days]')
+ylabel('Travel Time [seconds]')
 legend('Travel Time', 'WT Background', 'WT Spikes')
+xlim([0 4*10080+1])
+xticks([1:2*1440:(28*1440+1)])
+xticklabels([0:2:28])

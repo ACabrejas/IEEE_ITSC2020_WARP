@@ -49,7 +49,7 @@ relative_error_daytime = function(error_type) {
     geom_line(size=1.5) + theme(text = element_text(size=28),axis.text.x = element_text(angle = 0)) + 
     scale_x_discrete(breaks=time_label, labels=as.character(time_label)) +
     scale_y_continuous(breaks=seq(0.025,0.15,by=0.025)) + 
-    scale_colour_discrete(name  =label_mx, labels=c("Published Profile", "Wavelet Hybrid Profile", "Segmentation Profile"))+
+    scale_colour_discrete(name  =label_mx, labels=c("Published Profile", "WARWICK Profile", "Segmentation Profile"))+
                          # breaks=c("Published", "Hybrid", "Segmentation)")+
                         #  labels=c("Published Model", "Wavelet Hybrid Model", "Segmentation Model")  +
     theme(legend.position = c(0.19, 0.88)) + theme(legend.text=element_text(size=24)) 
@@ -232,7 +232,7 @@ quantile_error = function(quantile, error_type, spike_parameter) {
       scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
       scale_colour_discrete(name  =label_mx)+
       scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
-                            labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
+                            labels=c("Published Model","WARWICK Model", "Segmentation Model")) +
       theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
   } else if (error_type == "rms") {
     ggplot(data = plot_data_long, aes(x=false_x_axis, y=value, colour=variable, group = variable)) + 
@@ -243,7 +243,7 @@ quantile_error = function(quantile, error_type, spike_parameter) {
       scale_x_continuous(breaks=c(1,seq(from = 10, to= 100, length.out = 10)), labels=custom_ticks) +
       scale_colour_discrete(name  =label_mx)+
       scale_colour_discrete(name  =label_mx, breaks=c("Published", "Hybrid", "Segmentation"),
-                            labels=c("Published Model","Wavelet Hybrid Model", "Segmentation Model")) +
+                            labels=c("Published Profile","WARWICK Profile", "Segmentation Profile")) +
       theme(legend.position = c(0.15, 0.90)) + theme(legend.text=element_text(size=18)) 
   }
   plotname = paste('../paper/images/',label_mx,'_quantile_',quantile,'_', error_type,'_8_12.pdf', sep = '')
