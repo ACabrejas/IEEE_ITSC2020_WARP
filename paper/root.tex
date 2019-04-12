@@ -77,7 +77,7 @@ We present the new WARWICK method for separating recurrent and outstanding conge
 We train and test this method using 12 weeks of real time travel data gathered at link level in the M6 and M11 in the United Kingdom.
 The approach is based on a time travel series analysis of travel time data from the UK's National Traffic Information Service (NTIS).
 Time series of travel times are characterised by a noisy background component showing the expected seasonal patterns and occasional large spikes associated with congestion events.
-The separation algorithm here presented uses statistical analysis of the Wavelet Transform of the travel times to split the original signal into two signals in the time-frequency domain: background and spikes, and then inverse transform them to use them for forecasting.
+The separation algorithm here presented uses statistical analysis of the Wavelet Transform of the travel times across different time scales to split the original signal into two signals in the time-frequency domain: background and spikes, and then inverse transform them to use them for forecasting.
 We process and combine 8 weeks of these signals, using spectral filtering and non-parametric locally weighted regression (LWR) to predict travel time in the link in the following week with a resolution of one minute, repeating this process 4 times on a rolling basis.
 We find that the error is meaningfully reduced compared to estimates obtained by basic time segmentation of the data and compared to the estimates published by the NTIS system.
 
@@ -90,8 +90,8 @@ baCKground
 
 \end{abstract}
 
-\section{Introduction}
-\subsection{Background}
+\section{Introduction} \label{Introduction}
+\subsection{Background} \label{Background}
 Incident detection algorithms yield a large number of false alarms and missed detections. This is mainly
 due to random temporal fluctuations or traffic noise that
 makes it difficult to differentiate between recurrent and
@@ -106,13 +106,16 @@ These profile values are published together with the measured travel times, but 
 
 While the profiles, in fairly used roads, vary with the day of the week and time of the day, their inter-week variation remains low, with major trends changes taking longer (order of months) than the biggest temporal unit considered (weeks). 
 This display of stability over time, means that calculating profiles is a different problem when compared with short-term forecasting.
-Since there is no a-priori mathematical definition of typical travel times, here, we will take it as the value that minimises the Mean Absolute Relative Error (MARE), when comparing it with the subsequently sampled real travel times.
+Since there is no a-priori mathematical definition of typical travel times, here, we will take it as the value that minimises the Mean Absolute Relative Error (MARE) or Root Mean Squared Error (RMSE), when comparing it with the subsequently sampled real travel times.
 
-\subsection{Previous Work}
+\subsection{Previous Work} \label{Previous Work}
 In this paper, we follow up on the future work indicated in \cite{ttprofiles}, aiming to provide with a novel algorithm that outputs one week of expected travel times, removing the heuristically set threshold in said paper.
 
 Our approach is based on statistical analysis of previous data and does not require any a-priori segmentation of days into classes. 
 Rather, the algorithm relies on patterns of intra- and inter-day variability which are learned from input data.
+
+The Continuous Wavelet Transform \cite{morletwavelet}
+
 
 ***
 The available literature on travel times is extensive but most recent research focuses on short-term forecasting and with fewer studies looking into the long term \cite{long-term} \cite{long-term-2}. 
@@ -121,16 +124,16 @@ Others take closer approaches to this paper: using historical data \cite{simple}
 Comparisons between some of these studies and others can be found in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}. 
 Most of these methods have been specifically tuned for the conditions on which they have been developed and transferability to other sites is often not evaluated.
 To assess the transferability of our method, it is tested on three different motorways and scored independently in each of them.
-The method here presented, uses a combination of spectral analysis, tree decisions and Locally Weighted Regression (LWR).
+The method here presented, uses a combination of Continuous Wavelet Transform, spectral analysis, and Locally Weighted Regression (LWR).
 ***
-\section{Examples of Travel Times}
+\section{Examples of Travel Times} \label{Examples of Travel Times}
 The most straightforward way to measure the instantaneous state of traffic over a stretch of road is the vehicles' travel times. 
 These are normally measured by induction loops placed under the lanes. 
 The instantaneous travel time measured for a given segment of road for a given minute of the day, will be the average time that the vehicles passing through it in said minute took to go from the entry to the exit loops.
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/Travel_Time.pdf}}
-	\caption{Measurements of travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.}
-	\label{fig:travel_time}
+\centerline{\includegraphics[width=\linewidth]{./images/Travel_Time.pdf}}
+\caption{Travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.}
+\label{fig:travel_time}
 \end{figure}
 In Figure \ref{fig:travel_time}, it can be observed that while most of the time, the travel time in a link repeats a vaguely predictable patterns during most of the days, with minima during nights corresponding with the bounded free flow time (except for speeding drivers).
 As the morning rush starts, travel time will rise leading to the morning traffic jams which are generated from the collective drivers behaviour.
@@ -139,143 +142,133 @@ After this, the travel times progressively decay towards the night period of fre
 In Figure \ref{fig:travel_time}, we can also observe that there are a series of peaks found out of this oscillating yet typically bounded behaviour. 
 In these, the travel time can increase up to several times fold the normal values.
 These large oscillations are not nearly as predictable both in intensity and inter-oscillation period than the recurrent congestion described previously.
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/ACF_M6_Link3.pdf}}
-	\caption{Autocorrelation function of the Travel Time series introduced in figure \ref{fig:travel_time} with a maximum lag of 4 weeks, showing daily and weekly seasonality.}
+	\caption{Autocorrelation function of the Travel Time series in figure \ref{fig:travel_time} with a maximum lag of 4 weeks.}
 	\label{fig:ACF}
 \end{figure}
 Lastly, in figure \ref{fig:ACF}, we can see the Autocorrelation Function for the Travel Time, plotted with a maximum lag of 4 weeks. Here we can see a double seasonal pattern with periods of 1 day and 1 week.
 This regularity seen in time travel time series can and is often used by modellers to approximate and forecast travel times as is explored over the next sections.
-\section{Basic methods for profile estimation}
-
+\section{Basic methods for profile estimation}\label{Basic methods for profile estimation}
 \subsection{Use of Exponentially Weighted Moving Average} \label{ewma}
-
-As explained in \cite{ttprofiles}, the most basic approach to profile estimation is to apply an Exponentially Weighted Moving Average (EWMA) on the same minute of every day, with the implicit assumption that similar behaviour is expected at the same time of the day. 
-In this approach, the estimated profile $\hat{x}(i,d+1)$ on the $i-th$ minute of a given day $d$, for a memory parameter $\alpha \in [0,1]$ and with measured travel time $x_i^d$, will be:
+As explained in \cite{ttprofiles}, the most basic approach to profile estimation is to apply an Exponentially Weighted Moving Average (EWMA) on the same minute of every day, assuming that similar behaviour is expected at the same time of the day. 
+In this manner, the estimated profile $\hat{x}(i,d+1)$ on the $i-th$ minute of a given date $d$, for a memory parameter $\alpha \in [0,1]$ and with measured travel time $x_i^d$, will be:
 \begin{equation}
-\hat{x}^{d+1}_i = \alpha * x^{d}_{i} + (1-\alpha)*\hat{x}^{d}_{i}
+\begin{aligned}
+\hat{x}^{d+1}_i &= \alpha * x^{d}_{i} + (1-\alpha)*\hat{x}^{d}_{i} \\ 
+&= \alpha * x^{d}_{i} + \alpha^2 * x^{d-1}_{i} + (1-\alpha - \alpha^2) \hat{x}^{d-1}_{i}\\ 
+&= \alpha * x^{d}_{i} + \alpha^2 * x^{d-1}_{i} + \alpha^3 * x^{d-2}_{i} + \bigg( 1-\sum_{i=1}^{3} \alpha^i \bigg) \hat{x}^{d-1}_{i}\\
+&= ...
+\end{aligned}
+\label{eq:ewma}
 \end{equation}
-The main problem with EWMA is the manner in which the memory decays. 
-Recent measurements are weighted more heavily than events in the past. Thus if an extreme fluctuation occurs,  the following profile estimates will be biased, partially replicating this event and over-estimating the travel times until enough new measurements arrive to dissipate this effect.
+The main issue with EWMA-based profiles is the effects generated due to the way in which the memory decays as we can see above in equation \ref{eq:ewma}.
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/EWMA.pdf}}
-	\caption{Example with complications when using EWMA to create forecasts of travel times.}
+	\caption{Example of false predictions after a large deviation when using EWMA for forecasting.}
 	\label{fig:EWMA}
 \end{figure}
+Recent measurements are weighted exponentially more heavily than events farther in the past. 
+Thus if an extreme fluctuation occurs, the following profile estimates will be biased, partially replicating this event and over-estimating the travel times until enough new measurements arrive to dissipate this effect.
 \subsection{Segmentation}\label{segmentation}
-In addition, to acknowledge the specific differences between some special dates in the year, and the difference between days of the week, this family of methods requires the use of heavy date based segmentation. 
-The EWMA will be applied across dates which fall in the same category (i.e. Mondays, weekends, Christmas Day, ...).
-If this is combined with the shortcomings presented in Section \ref{ewma}, some long reaching effects are generated, which can propagate for weeks into the future predictions, but do not have any reflection on the observed travel times. A possible instance of this effect can be seen in Figure \ref{fig:EWMA_spike}.
-Furthermore, in order to generate a valid segmentation, an experienced team is necessary, since the needs of the process can geographically vary, given that the EWMA approach tends to better approximate endemic congestion. 
-This dependence can lead to the creation of legacy systems which may not be well understood after a few years, decreasing their usability over time unless extra effort is put into transmitting this knowledge and continually train new staff.
-%\begin{figure}
-%	\includegraphics[width=\linewidth]{EWMA.pdf}
-%	\caption{A single large random spike in travel time can lead to over-estimation of subsequent profile estimates.}
-%	\label{fig:EWMA_spike}
-%\end{figure}
+In addition, to recognize and use the specific differences of some special dates in the year, and the intra-week variation, this family of methods makes heavy use of date based segmentation. 
+The EWMA is applied across dates which fall in the same category (i.e. Saturdays, weekdays, New Year, ...).
+This segmentation in classes, when combined with the shortcomings presented in Section \ref{ewma} can generate some long lasting perturbations, which can propagate for weeks into the future predictions, while not being reflected on the observed travel times. A possible instance of this effect can be seen in Figure \ref{fig:EWMA}.
+It follows that in order to generate a valid segmentation, operational and geographical expertise about specific roads is needed, given that the EWMA approach is effective exclusively for endemic congestion. 
+This dependence can lead to the creation of legacy systems which become difficult to maintain after a few years, decreasing their usability over time unless extra effort is put into transmitting this knowledge and continually train new staff.
+These modelling and staffing limitations make Segmentation and EWMA based profiles suboptimal both in performance and operation.
 \section{Data}
 \subsection{Data Gathering and Selection}
-Data was gathered from 3 different Motorways in England.
-The M6 and M11 were selected due to their high usage and combination of recurrent and outstanding congestion. 
-The M25 was selected on the base that it is the most used Motorway in England on a daily basis, suffering from chronic congestion.
+Data was gathered from 2 different Motorways in England.
+The M6 and M11 were selected due to their high usage and combination of recurrent and outstanding congestion, being key in several heavily used commuting routes. 
 \begin{itemize}
-	\item The dataset for M6 comprises 90 days (12 complete weeks) of data (07/03/2016-05/06/2016) across 14 links.
-	\item The dataset for d M11 comprises 90 days (12 complete weeks) of data (07/03/2016-05/06/2016) across 25 links.
-	\item The dataset for M25 comprises 75 days (10 complete weeks) of data (07/04/2017-20/06/2017) across 61 links.
-	\item Links were discarded if they had more than 10\% of missing data or if they contained any entry or exit ramps.
+	\item The dataset comprises 90 days (12 complete weeks) of data (07/03/2016-05/06/2016).
+	\item Links were discarded if they had more than 10\% of missing data or if they contained any access ramps.
+	\item The previous condition left 14 different links in the M6 and 25 links in the case of the M11.
 	\item Whenever missing data was detected for 10 or less minutes, it was linearly interpolated.
 	\item Whenever missing data was detected for over 10 minutes, it was left as missing values.
 \end{itemize}
-In the case of the M6 and the M11 the first 8 weeks are used to predict one complete week ahead.
-One week later, the process is repeated, deleting the oldest week of training data and incorporating measurements of the week predicted in the previous step. This is performed 4 times.
-In the case of the M25, 6 weeks of data were used for training and the process as described above is performed 3 times.
+The initial 8 weeks are used by the algorithm to predict one complete week ahead.
+One week later, the process is repeated, deleting the oldest week of training data and incorporating measurements of the week predicted in the previous step. 
+This procedure is performed 4 times.
 \subsection{Data Contents}
-For each link on a specific date, the required input data consists of one entry per minute, containing:
+For each link on a specific date, the data consists of one sample per minute, containing:
 \begin{itemize}
 	\item Measured travel time
-	\item Profile (expected) travel time 	
+	\item Profile (expected) travel time 
+	\item Traffic Flow
+	\item Overhead Space	
 \end{itemize}
 
 \section{Background and Spikes}
-
-During exploratory data analysis we found that, from the point of view of travel times, traffic operates in two differentiated regimes that we denominated Background and Spikes. 
+\subsection{Characteristics}
+As described in \cite{ttprofiles}, during our initial exploration of the data we found that, from the point of view of travel times, traffic operates in two differentiated regimes that we denominated Background and Spikes. 
 \begin{itemize}
 	\item Background: 
 	\begin{itemize}
 		\item Stable around a mean value.
 		\item Oscillates with small amplitude and high frequency.
-		\item Suitable for spectral filtering.
+		\item Suitable for spectral filtering (smoothing) and seasonal analysis.
 	\end{itemize}
 	\item Spikes: 
 	\begin{itemize}
-		\item Zero most of the time. Quickly go to extreme values.
-		\item Oscillates with great amplitude and low inter-oscillation frequency, creating far reaching effects.
-		\item Suitable for seasonal decomposition.
+		\item Zero most of the time.
+		\item Quickly go to extreme values.
+		\item Oscillates with great amplitude and high inter-oscillation period, creating far reaching effects.
+		\item Non-periodic as per detection in time-frequency domain, however, non harmonic seasonality can be extracted via non-parametric regression .
 	\end{itemize}
 \end{itemize}
 
-In this context, assuming Gaussian noise $\xi$, and that the components operate in an additive way, generated a signal of the form:
+In this context, if we assume Gaussian noise $\xi$, and that the Background and Spike components will operate in an additive way, the decomposition will be of the form:
 \begin{equation}
 \textrm{Travel Time}_t  = \textrm{Background}_t + \textrm{Spikes}_t + \xi
 \end{equation}
-The objective was to separate them in such a way that the moments of smooth and normal operation are captured as part of the Background and used for spectral analysis, attempting to mitigate the prediction error induced by the high frequency oscillations and obtaining a basic view of what can be daily observed.
-Meanwhile, the spikes, including the recurring and non-recurring congestion, were treated separately searching for seasonality in larger time scales than those in which the travel time signal oscillates, as suggested by Fig. \ref{fig:acf}. 
-Ideally, after this final step of the decomposition, the remainder should only contain isolated large rare events deviating from the profile and white noise.\\
-
-To prevent the differing lengths of the links from affecting this decomposition, for this step, all travel times were normalized according to their corresponding link's free flow time, defined as the time to transverse the length of the link at the maximum legal speed allowed by the motorway. 
-However, this step only mitigates the non-regularity of the time series, since there are drivers who do not follow these limits.
-A threshold was heuristically set, as seen in Table \ref{table:threshold}  to separate the two components in the different regimes from the normalised travel times on a per-motorway basis, although better results can be obtained by setting each link individually. 
-Intuitively, this threshold scales with the amount of recurring congestion in a link. Whenever a data point was above the threshold, it was flagged as belonging to a spike.
-\begin{table}[htbp]
-	\caption{Travel Time Normalisation Thresholds}
-	\begin{center}
-		\begin{tabular}{|c|c|}
-			\hline
-			\textbf{Motorway}&{\textbf{Threshold}} \\
-			\hline
-			M6& 1.1\\
-			\hline
-			M11& 1.2\\
-			\hline
-			M25& 1.4\\
-			\hline
-		\end{tabular}
-		\label{table:threshold}
-	\end{center}
-\end{table}
-
-
-%\begin{figure}[htbp]
-%	\centering
-%	\includegraphics[width=\linewidth]{BS.pdf}
-%	\caption{ Decomposition time series in background and spikes }
-%	\label{fig:Background}
-%\end{figure}
-
-For this purpose, an indicator function was defined, taking for every minute the value:
-\begin{equation}
-    \delta_t^{spike}=
-    \begin{cases}
-      1, & \text{if } x_t > \text{Threshold}\\
-      0, & \text{otherwise}
-    \end{cases}
-    \label{delta}
-  \end{equation}
-
-
-\subsection{Separation via Wavelet Transform}
+The objective is to separate them in such a way that the moments of smooth and normal operation, together with the recurring congestion are captured as part of the Background and used for spectral smoothing, attempting to mitigate the prediction error induced by the high frequency oscillations and obtaining a basic view of what can be daily observed, so seasonal patterns can be extracted in the shorter and longer periods shown in \ref{fig:ACF}.
+Meanwhile, the spikes, containing the non-recurring congestion, can be treated separately searching for seasonality left in larger time scales than those in which the travel time signal oscillates, as also suggested by Fig. \ref{fig:ACF}. 
+Ideally, after this seasonal extraction step of the decomposition, the remainder should only contain isolated large rare events deviating from the profile and white noise.
+\subsection{Wavelet Time Series Decomposition}\label{decomposition}
 \begin{figure*}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/WT_combined_1500_600.png}}
-	\caption{Things}
+	\caption{Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6.
+	Right: Power of DWT of the extracted Background $\vec{B_t}$ series, as detailed in Section \ref{decomposition}, for Link 1170079 of the M6}
 	\label{fig:wt}
 \end{figure*}
+
+To perform the decomposition, we will take advantage of the additive properties of the wavelet transform. First the time series $\vec{x_t}$ of length $t$, and elements $x_i$ with $i in [0,t]$ is turned into a zero mean series $\vec{x_t} - mean(\vec{x_t})$ and used as input for a Continuous Wavelet Transform (CWT) \cite{daubechies} \cite{mallat} using a Morse wavelet \cite{morse} and 140 timescales levels.
+The output of this first transform is a complex matrix $\vec{W}_{\textrm{levels}\,\times\, t}$, for the elements of which we calculate their modulus $\rho$, phase $\phi$ and power $P$. 
+A heatmap of $P^2$ for the original time series can be seen in the first subplot in Figure \ref{fig:wt}.
+In the figure we can observe that the most influential dynamics occurring during the series length, happen at the timescales where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes).
+In the figure, we also observe that surges in power across different timescales occur at the same time as the non-recurring congestion, since in order to approximate this signal, the CWT algorithm needs to combine several wavelets with smaller periods than those dominating the recurring part of the series.
+
+In order to isolate this non-recurring component, the series is sequentially assessed over all the time domain for a single timescale level $l$, generating a series $\vec{x_{t}}^l$.
+After fixing $l$, we calculate the Median and Inter Quantile Range of $\vec{x_{t}}^l$ to search for outliers.
+A maximum threshold value is set equal to $T = median(\vec{x_t}) + \alpha * IQR(\vec{x_{t}}^l)$, with $\alpha \in [0,\inf]$ being a parameter that defines how aggressively we target spikes. 
+The results produced here were obtained with $\alpha=1$ to showcase the most basic setup.
+
+Then, the individual elements of $\vec{x_{t}}^l$, $x_{i}^l$ are individually evaluated: if found below the limit, they are stored in a Background container $B_i^l = x_{i}^l$; otherwise, the fraction below the threshold will be nonetheless passed on to the background $\vec{B_i}^l = median(\vec{x_{t}}^l) + \alpha * IQR(\vec{x_{t}}^l)$, with the remaining part going into the Spikes storage $\vec{S_i}^l = x_{i}^l - B_{i}^l$.
+
+Once all levels have been processed in this manner, we use the previous information about $\phi$ to reconvert the two series from being characterised in terms of $(\rho, \phi)$ to the complex components of the DWT.
+After this step, we apply the Inverse DWT to $\vec{B_t}$ and $\vec{S_t}$, obtaining the two series that can be observed in Figure \ref{fig:splitting}.
 \subsection{Series Recombination}
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/Splitting.png}}
-	\caption{Things}
+	\caption{Recombination}
 	\label{fig:splitting}
 \end{figure}
+
+Due to small noise introduction during the inverse transform a threshold is applied to $\vec{S_t}$, where elements representing spikes of less than 3 seconds in amplitude are set to zero.
+
+For future prediction steps, an indicator function was defined, taking for every minute the value:
+\begin{equation}
+    \delta_i^{spike}=
+    \begin{cases}
+      1, & \text{if } x_i > \text{Threshold}\\
+      0, & \text{otherwise.}
+    \end{cases}
+    \label{delta}
+  \end{equation}
+  
+
 
 \section{WARWICK Travel Time Prediction Algorithm} \label{algorithm}
 Given the cyclic nature of traffic, the aim was a prediction algorithm that could account for the periodic variations and endemic congestion while being resilient to fluctuations and rare events. This algorithm also should:
@@ -376,7 +369,7 @@ In order to create the final Seasonal-Spectral Hybrid profile (Hybrid), one of t
 	\end{center}
 \end{table*}
 In this section the accuracy of the algorithm described above is compared against the Published Profiles and the NS Model. 
-For each temporal point $i$, the Mean Average Relative Error (MARE) is defined below:
+For each temporal point $i$, with a prediction $\hat{x_i}$, and an actual value of $x_i$, the Mean Average Relative Error (MARE) is defined below as:
 \begin{equation}
 \textrm{MARE} =\frac{ \left( \sum_{i=1}^{n} \frac{\|x_i - \hat{x_i}\|}{x_i}\right)}{n}
 \end{equation}
@@ -384,43 +377,37 @@ For complete Motorways, the Root Mean Squared Error (RMSE) has been calculated f
 \begin{equation}
 \textrm{RMSE} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \hat{x_i})^2}{n}}
 \end{equation}
-
 In both cases the error for a Link is defined as the average MARE or RMSE across all prediction points.
 The error for a Motorway is defined as the average of the error across all its links.
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/M6_daytime_8_12.pdf}}
-	\caption{Things}
+	\caption{MARE over the times of the day for the M6}
 	\label{fig:m6dt}
 \end{figure}
-
-
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/M11_daytime_8_12.pdf}}
-	\caption{Things}
+	\caption{MARE over the times of the day for the M11}
 	\label{fig:m11dt}
 \end{figure}
 
 
 Here, the accuracy of the algorithm is compared against the Published Profiles and the NS Profile across all percentiles of travel time.
-As it can be seen in Figs. \ref{fig:m6q}, \ref{fig:m11q} and \ref{fig:m25q}, the Hybrid Profile has a higher accuracy than the Published Profiles and the NS Model for all percentiles of travel time except for the most extreme values where they all perform poorly.\\
+As it can be seen in Figs. \ref{fig:m6q} and \ref{fig:m11q}, the WARWICK Profile has a higher accuracy than the Published Profiles and the NS Model for all percentiles of travel time except for the most extreme values where they all perform poorly.\\
 The most meaningful difference occurs between percentiles $[50-95]$, where the Published Profile starts to suffer from higher inaccuracy.
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/M6_quantile_1_rms_8_12.pdf}}
-	\caption{Things}
+	\caption{MARE across percentiles of travel time for the M6.}
 	\label{fig:m6q}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/M11_quantile_1_rms_8_12.pdf}}
-	\caption{Things}
+	\caption{MARE across percentiles of travel time for the M11.}
 	\label{fig:m11q}
 \end{figure}
 
 Here, the accuracy of the algorithm is compared against the Published Profiles and the NS Profile across the times of the day.
-As it can be seen in Figures \ref{fig:m6daytime}, \ref{fig:m11daytime} and \ref{fig:m25daytime}, the Hybrid Profile has a higher accuracy than the Published Profiles and the NS Model for all times of the day, all locations and training lengths. 
+As it can be seen in Figures \ref{fig:m6dt} and \ref{fig:m11dt}, the Hybrid Profile has a higher accuracy than the Published Profiles and the NS Model for all times of the day, all locations and training lengths. 
 The most relevant improvement occurs during the morning and evening peak hours, where the algorithm presented in this paper does not accuse meaningful performance worsening relative to the morning plateau when compared with the other two profiles.\\
 In the case of the M6 and M11, where the training set is richer, the error at peak times is reduced by at least 50\% in all cases, reaching as much as 68.7\% in the case of the M6 morning rush.
 In the case of the M25, which is congested on a regular basis, the errors in the Published Profile during peak times are slightly lower than on the other cases, indicating that, given the use of EWMA for its calculation, recurrent congestion is better captured by it. 
@@ -543,12 +530,6 @@ Even in this case, the proposed algorithm performs significantly better than any
 The algorithm presented above meets the requirements described in Section \ref{algorithm} except for the need of an heuristically set threshold to separate the original Travel Time signal into Background and Spikes.
 One potential way of reaching compliance with these requirements is to perform the decomposition by applying a Wavelet Transform and separating background from spikes based on statistical analysis of the transformed time series in terms of how their Wavelet coefficients fluctuate over time within a scale level. 
 In the future a sensitivity analysis should be conducted to explore the limits of the algorithm in terms of minimum training data set, as well as maximum performance with increased training.\\
- \\
- \\
- \\
- \\
- 
-
 
 \begin{thebibliography}{00}
 \bibitem{NTIS} The Highways Agency, "National Transport Information System Publish Services", Technical Report, 2011. 
@@ -575,6 +556,10 @@ In the future a sensitivity analysis should be conducted to explore the limits o
 \bibitem{STL} R. B. Cleveland, W. S. Cleveland, J. E. McRae and I. Terpenning, "STL: A Seasonal-Trend Decomposition Procedure Based on Loess", Journal of Official Statistics, vol. 6, 1990, pp. 3-73.
 \bibitem{forecasting} R. J. Hyndman and G. Athanasopoulos, "Forecasting: Principles and Practice", Otexts, 2013.
 \bibitem{ttprofiles} Cabrejas-Egea, A. , de Ford, P., \& Connaughton, C. (2018, November). Estimating Baseline Travel Times for the UK Strategic Road Network. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 531-536). IEEE.
+\bibitem{daubechies} Daubechies, Ingrid. Ten lectures on wavelets. Vol. 61. Siam, 1992.
+\bibitem{mallat} Mallat, Stéphane. A wavelet tour of signal processing. Elsevier, 1999.
+\bibitem{morse} Olhede, Sofia C., and Andrew T. Walden. "Generalized morse wavelets." IEEE Transactions on Signal Processing 50.11 (2002): 2661-2670.
+\bibitem{morletwavelet} Grossmann, Alexander, and Jean Morlet. "Decomposition of Hardy functions into square integrable wavelets of constant shape." SIAM journal on mathematical analysis 15.4 (1984): 723-736.
 \end{thebibliography}
 
 

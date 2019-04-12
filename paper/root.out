@@ -9,13 +9,14 @@
 \BOOKMARK [2][-]{subsection.4.1}{Data Gathering and Selection}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.2}{Data Contents}{section.4}% 10
 \BOOKMARK [1][-]{section.5}{Background and Spikes}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{Separation via Wavelet Transform}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{Series Recombination}{section.5}% 13
-\BOOKMARK [1][-]{section.6}{WARWICK Travel Time Prediction Algorithm}{}% 14
-\BOOKMARK [2][-]{subsection.6.1}{Naive Segmentation \(Null\)}{section.6}% 15
-\BOOKMARK [2][-]{subsection.6.2}{WARWICK: Spectral Component}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.3}{WARWICK: Seasonality Component}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.4}{WARWICK Hybrid Profile}{section.6}% 18
-\BOOKMARK [1][-]{section.7}{Accuracy Results}{}% 19
-\BOOKMARK [1][-]{section.8}{Future Work}{}% 20
-\BOOKMARK [1][-]{section*.1}{References}{}% 21
+\BOOKMARK [2][-]{subsection.5.1}{Characteristics}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Wavelet Time Series Decomposition}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{Series Recombination}{section.5}% 14
+\BOOKMARK [1][-]{section.6}{WARWICK Travel Time Prediction Algorithm}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Naive Segmentation \(Null\)}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{WARWICK: Spectral Component}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{WARWICK: Seasonality Component}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.4}{WARWICK Hybrid Profile}{section.6}% 19
+\BOOKMARK [1][-]{section.7}{Accuracy Results}{}% 20
+\BOOKMARK [1][-]{section.8}{Future Work}{}% 21
+\BOOKMARK [1][-]{section*.1}{References}{}% 22

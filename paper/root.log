@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.9.1)  11 APR 2019 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.9.1)  12 APR 2019 16:07
 entering extended mode
 **./root.tex
 (root.tex
@@ -1021,69 +1021,62 @@ Underfull \hbox (badness 1874) in paragraph at lines 71--71
 om
  []
 
-<./images/Travel_Time.pdf, id=87, 578.16pt x 361.35pt>
+<./images/Travel_Time.pdf, id=91, 578.16pt x 361.35pt>
 File: ./images/Travel_Time.pdf Graphic file (type pdf)
 <use ./images/Travel_Time.pdf>
-Package pdftex.def Info: ./images/Travel_Time.pdf  used on input line 131.
+Package pdftex.def Info: ./images/Travel_Time.pdf  used on input line 134.
 (pdftex.def)             Requested size: 245.71811pt x 153.56895pt.
+<./images/ACF_M6_Link3.pdf, id=94, 1156.32pt x 505.89pt>
+File: ./images/ACF_M6_Link3.pdf Graphic file (type pdf)
+<use ./images/ACF_M6_Link3.pdf>
+Package pdftex.def Info: ./images/ACF_M6_Link3.pdf  used on input line 146.
+(pdftex.def)             Requested size: 245.71811pt x 107.49826pt.
 [1{C:/Users/acabrejasegea/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-<./images/ACF_M6_Link3.pdf, id=102, 1156.32pt x 505.89pt>
-File: ./images/ACF_M6_Link3.pdf Graphic file (type pdf)
-<use ./images/ACF_M6_Link3.pdf>
-Package pdftex.def Info: ./images/ACF_M6_Link3.pdf  used on input line 144.
-(pdftex.def)             Requested size: 245.71811pt x 107.49826pt.
-<./images/EWMA.pdf, id=106, 1156.32pt x 505.89pt>
-File: ./images/EWMA.pdf Graphic file (type pdf)
-<use ./images/EWMA.pdf>
-Package pdftex.def Info: ./images/EWMA.pdf  used on input line 162.
-(pdftex.def)             Requested size: 245.71811pt x 107.49826pt.
-
-
-LaTeX Warning: Reference `fig:EWMA_spike' on page 2 undefined on input line 169
-.
-
-[2 <./images/Travel_Time.pdf> <./images/ACF_M6_Link3.pdf> <./images/EWMA.pdf>]
-
-LaTeX Warning: Reference `fig:acf' on page 3 undefined on input line 223.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 221--225
-
+Overfull \hbox (11.432pt too wide) detected at line 164
+[][][]
  []
 
-<./images/WT_combined_1500_600.png, id=141, 907.59074pt x 361.35pt>
+<./images/EWMA.pdf, id=111, 1156.32pt x 505.89pt>
+File: ./images/EWMA.pdf Graphic file (type pdf)
+<use ./images/EWMA.pdf>
+Package pdftex.def Info: ./images/EWMA.pdf  used on input line 167.
+(pdftex.def)             Requested size: 245.71811pt x 107.49826pt.
+[2 <./images/Travel_Time.pdf> <./images/ACF_M6_Link3.pdf> <./images/EWMA.pdf>]
+<./images/WT_combined_1500_600.png, id=149, 907.59074pt x 361.35pt>
 File: ./images/WT_combined_1500_600.png Graphic file (type png)
 <use ./images/WT_combined_1500_600.png>
 Package pdftex.def Info: ./images/WT_combined_1500_600.png  used on input line 
-269.
+231.
 (pdftex.def)             Requested size: 505.89pt x 201.41728pt.
-<./images/Splitting.png, id=143, 1445.4pt x 726.3135pt>
+
+[3]
+<./images/Splitting.png, id=162, 1445.4pt x 726.3135pt>
 File: ./images/Splitting.png Graphic file (type png)
 <use ./images/Splitting.png>
-Package pdftex.def Info: ./images/Splitting.png  used on input line 275.
+Package pdftex.def Info: ./images/Splitting.png  used on input line 254.
 (pdftex.def)             Requested size: 245.71811pt x 123.47166pt.
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
+ [4 <./images/WT_combined_1500_600.png> <./images/Splitting.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
 
  []
 
 
-LaTeX Warning: Reference `fig:flowchart' on page 4 undefined on input line 313.
+LaTeX Warning: Reference `fig:flowchart' on page 5 undefined on input line 306.
 
 
-[4 <./images/WT_combined_1500_600.png> <./images/Splitting.png (PNG copy)>]
+
 
 pdfTeX warning: pdflatex (file ./images/flow_temp.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
-<./images/flow_temp.pdf, id=177, 845.07724pt x 597.55246pt>
+<./images/flow_temp.pdf, id=174, 845.07724pt x 597.55246pt>
 File: ./images/flow_temp.pdf Graphic file (type pdf)
 <use ./images/flow_temp.pdf>
-Package pdftex.def Info: ./images/flow_temp.pdf  used on input line 337.
+Package pdftex.def Info: ./images/flow_temp.pdf  used on input line 330.
 (pdftex.def)             Requested size: 245.71811pt x 173.74167pt.
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 351.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 344.
 
 
 ("C:\Users\acabrejasegea\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\oml
@@ -1091,90 +1084,52 @@ ptm.fd"
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 351.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 344.
 
-Overfull \hbox (3.43028pt too wide) in paragraph at lines 349--359
+Overfull \hbox (3.43028pt too wide) in paragraph at lines 342--352
  [] 
  []
 
 
-Overfull \hbox (3.43028pt too wide) in paragraph at lines 366--376
+Overfull \hbox (3.43028pt too wide) in paragraph at lines 359--369
  [] 
  []
 
-<./images/M6_daytime_8_12.pdf, id=178, 867.24pt x 578.16pt>
+<./images/M6_daytime_8_12.pdf, id=175, 867.24pt x 578.16pt>
 File: ./images/M6_daytime_8_12.pdf Graphic file (type pdf)
 <use ./images/M6_daytime_8_12.pdf>
-Package pdftex.def Info: ./images/M6_daytime_8_12.pdf  used on input line 392.
+Package pdftex.def Info: ./images/M6_daytime_8_12.pdf  used on input line 383.
 (pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
-<./images/M11_daytime_8_12.pdf, id=179, 867.24pt x 578.16pt>
+<./images/M11_daytime_8_12.pdf, id=176, 867.24pt x 578.16pt>
 File: ./images/M11_daytime_8_12.pdf Graphic file (type pdf)
 <use ./images/M11_daytime_8_12.pdf>
-Package pdftex.def Info: ./images/M11_daytime_8_12.pdf  used on input line 400.
+Package pdftex.def Info: ./images/M11_daytime_8_12.pdf  used on input line 388.
 
 (pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
-
-LaTeX Warning: Reference `fig:m25q' on page 5 undefined on input line 407.
-
-<./images/M6_quantile_1_rms_8_12.pdf, id=182, 867.24pt x 578.16pt>
+<./images/M6_quantile_1_rms_8_12.pdf, id=179, 867.24pt x 578.16pt>
 File: ./images/M6_quantile_1_rms_8_12.pdf Graphic file (type pdf)
 <use ./images/M6_quantile_1_rms_8_12.pdf>
 Package pdftex.def Info: ./images/M6_quantile_1_rms_8_12.pdf  used on input lin
-e 411.
+e 399.
 (pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
-[5 <./images/flow_temp.pdf> <./images/M6_daytime_8_12.pdf> <./images/M11_daytim
-e_8_12.pdf>]
-<./images/M11_quantile_1_rms_8_12.pdf, id=226, 867.24pt x 578.16pt>
+<./images/M11_quantile_1_rms_8_12.pdf, id=180, 867.24pt x 578.16pt>
 File: ./images/M11_quantile_1_rms_8_12.pdf Graphic file (type pdf)
 <use ./images/M11_quantile_1_rms_8_12.pdf>
 Package pdftex.def Info: ./images/M11_quantile_1_rms_8_12.pdf  used on input li
-ne 417.
+ne 404.
 (pdftex.def)             Requested size: 245.71811pt x 163.80688pt.
-
-
-LaTeX Warning: Reference `fig:m6daytime' on page 6 undefined on input line 423.
-
-
-
-LaTeX Warning: Reference `fig:m11daytime' on page 6 undefined on input line 423
-.
-
-
-LaTeX Warning: Reference `fig:m25daytime' on page 6 undefined on input line 423
-.
-
-
-Underfull \hbox (badness 2818) in paragraph at lines 543--550
+[5 <./images/flow_temp.pdf>]
+Underfull \hbox (badness 2818) in paragraph at lines 530--533
 \OT1/ptm/m/n/10 de-scribed in Sec-tion [][]VI[][] ex-cept for the need of an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
+Underfull \hbox (badness 10000) in paragraph at lines 530--533
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
-
- []
-
-[6 <./images/M6_quantile_1_rms_8_12.pdf> <./images/M11_quantile_1_rms_8_12.pdf>
-]
+[6 <./images/M6_daytime_8_12.pdf> <./images/M11_daytime_8_12.pdf> <./images/M6_
+quantile_1_rms_8_12.pdf> <./images/M11_quantile_1_rms_8_12.pdf>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1186,16 +1141,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 581.
-[7
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 581.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 566.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 566.
  (root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 581.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 581.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 566.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 566.
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: 250B61387BB7AF2E214E592653169BCF;1389.
+(rerunfilecheck)             Checksum: BFE993EFE64C470DD53C4BC626A8444D;1456.
 
 
 LaTeX Warning: There were undefined references.
@@ -1203,16 +1156,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 581.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 566.
  ) 
 Here is how much of TeX's memory you used:
- 21427 strings out of 492973
- 403679 string characters out of 3123149
- 454183 words of memory out of 3000000
- 25030 multiletter control sequences out of 15000+200000
+ 21437 strings out of 492973
+ 403810 string characters out of 3123149
+ 459819 words of memory out of 3000000
+ 25036 multiletter control sequences out of 15000+200000
  576716 words of font info for 123 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,63p,483b,845s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,11n,63p,483b,845s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/bas
 e/8r.enc}<C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmex10.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/Mi
@@ -1234,9 +1187,9 @@ a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
 ts/type1/urw/times/utmbi8a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/acabrejasegea/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (7 pages, 2215583 bytes).
+Output written on root.pdf (7 pages, 2227878 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
- 219 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 362 PDF objects out of 1000 (max. 8388607)
+ 94 named destinations out of 1000 (max. 500000)
+ 227 words of extra memory for PDF output out of 10000 (max. 10000000)
 

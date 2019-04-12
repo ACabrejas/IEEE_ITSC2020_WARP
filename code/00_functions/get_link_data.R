@@ -21,6 +21,8 @@ get_link_data = function(mX, i, wavelet_name, link) {
   flow <- m_data_selected$traffic_flow[m_data_selected$link_id == link]
   flow[is.na(flow)] = median(flow, na.rm = T)
   
+  free_flow = m_data_selected$free_flow[m_data_selected$link_id == link]
+  
   spike_flag = spikes>3
   
   #plot(spikes, type='l')
@@ -36,7 +38,7 @@ get_link_data = function(mX, i, wavelet_name, link) {
   
   background = background + spikeremainder
   
-  output = list(travel_time = travel_time, background = background, spikes = spikes, spike_flag = spike_flag, flow = flow)
+  output = list(travel_time = travel_time, background = background, spikes = spikes, spike_flag = spike_flag, flow = flow, free_flow=free_flow)
   
   return(output)
 }

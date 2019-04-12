@@ -18,6 +18,7 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{NTIS}
 \citation{ttprofiles}
+\citation{morletwavelet}
 \citation{long-term}
 \citation{long-term-2}
 \citation{should}
@@ -39,69 +40,73 @@
 \citation{ser}
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}}
+\newlabel{Introduction}{{I}{1}{Introduction}{section.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {I-A}Background}{1}{subsection.1.1}}
+\newlabel{Background}{{I-A}{1}{Background}{subsection.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {I-B}Previous Work}{1}{subsection.1.2}}
+\newlabel{Previous Work}{{I-B}{1}{Previous Work}{subsection.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Examples of Travel Times}{1}{section.2}}
+\newlabel{Examples of Travel Times}{{II}{1}{Examples of Travel Times}{section.2}{}}
 \citation{ttprofiles}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Measurements of travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.\relax }}{2}{figure.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.\relax }}{2}{figure.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:travel_time}{{1}{2}{Measurements of travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.\relax }{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Autocorrelation function of the Travel Time series introduced in figure \ref  {fig:travel_time} with a maximum lag of 4 weeks, showing daily and weekly seasonality.\relax }}{2}{figure.2}}
-\newlabel{fig:ACF}{{2}{2}{Autocorrelation function of the Travel Time series introduced in figure \ref {fig:travel_time} with a maximum lag of 4 weeks, showing daily and weekly seasonality.\relax }{figure.2}{}}
+\newlabel{fig:travel_time}{{1}{2}{Travel time in link 1170079 of the M6 over a period of 28 days between 07/Mar/2016 and 04/Apr/2016.\relax }{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Autocorrelation function of the Travel Time series in figure \ref  {fig:travel_time} with a maximum lag of 4 weeks.\relax }}{2}{figure.2}}
+\newlabel{fig:ACF}{{2}{2}{Autocorrelation function of the Travel Time series in figure \ref {fig:travel_time} with a maximum lag of 4 weeks.\relax }{figure.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Basic methods for profile estimation}{2}{section.3}}
+\newlabel{Basic methods for profile estimation}{{III}{2}{Basic methods for profile estimation}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Use of Exponentially Weighted Moving Average}{2}{subsection.3.1}}
 \newlabel{ewma}{{III-A}{2}{Use of Exponentially Weighted Moving Average}{subsection.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example with complications when using EWMA to create forecasts of travel times.\relax }}{2}{figure.3}}
-\newlabel{fig:EWMA}{{3}{2}{Example with complications when using EWMA to create forecasts of travel times.\relax }{figure.3}{}}
+\newlabel{eq:ewma}{{1}{2}{Use of Exponentially Weighted Moving Average}{equation.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example of false predictions after a large deviation when using EWMA for forecasting.\relax }}{2}{figure.3}}
+\newlabel{fig:EWMA}{{3}{2}{Example of false predictions after a large deviation when using EWMA for forecasting.\relax }{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-B}Segmentation}{2}{subsection.3.2}}
 \newlabel{segmentation}{{III-B}{2}{Segmentation}{subsection.3.2}{}}
+\citation{ttprofiles}
+\citation{daubechies}
+\citation{mallat}
+\citation{morse}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Data}{3}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Data Gathering and Selection}{3}{subsection.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Data Contents}{3}{subsection.4.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Background and Spikes}{3}{section.5}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Travel Time Normalisation Thresholds\relax }}{3}{table.1}}
-\newlabel{table:threshold}{{I}{3}{Travel Time Normalisation Thresholds\relax }{table.1}{}}
-\newlabel{delta}{{3}{3}{Background and Spikes}{equation.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-A}Separation via Wavelet Transform}{3}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Series Recombination}{3}{subsection.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}WARWICK Travel Time Prediction Algorithm}{3}{section.6}}
-\newlabel{algorithm}{{VI}{3}{WARWICK Travel Time Prediction Algorithm}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-A}Characteristics}{3}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Wavelet Time Series Decomposition}{3}{subsection.5.2}}
+\newlabel{decomposition}{{V-B}{3}{Wavelet Time Series Decomposition}{subsection.5.2}{}}
 \citation{FFT}
-\citation{STL}
-\citation{forecasting}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Things\relax }}{4}{figure.4}}
-\newlabel{fig:wt}{{4}{4}{Things\relax }{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Things\relax }}{4}{figure.5}}
-\newlabel{fig:splitting}{{5}{4}{Things\relax }{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6. Right: Power of DWT of the extracted Background $\mathaccentV {vec}17E{B_t}$ series, as detailed in Section \ref  {decomposition}, for Link 1170079 of the M6\relax }}{4}{figure.4}}
+\newlabel{fig:wt}{{4}{4}{Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6. Right: Power of DWT of the extracted Background $\vec {B_t}$ series, as detailed in Section \ref {decomposition}, for Link 1170079 of the M6\relax }{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-C}Series Recombination}{4}{subsection.5.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Recombination\relax }}{4}{figure.5}}
+\newlabel{fig:splitting}{{5}{4}{Recombination\relax }{figure.5}{}}
+\newlabel{delta}{{3}{4}{Series Recombination}{equation.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}WARWICK Travel Time Prediction Algorithm}{4}{section.6}}
+\newlabel{algorithm}{{VI}{4}{WARWICK Travel Time Prediction Algorithm}{section.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}Naive Segmentation (Null)}{4}{subsection.6.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-B}WARWICK: Spectral Component}{4}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {VI-C}WARWICK: Seasonality Component}{4}{subsection.6.3}}
+\citation{STL}
+\citation{forecasting}
+\@writefile{toc}{\contentsline {subsection}{\numberline {VI-C}WARWICK: Seasonality Component}{5}{subsection.6.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-D}WARWICK Hybrid Profile}{5}{subsection.6.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Things\relax }}{5}{figure.6}}
 \newlabel{fig:dataflow}{{6}{5}{Things\relax }{figure.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {VII}Accuracy Results}{5}{section.7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Things\relax }}{5}{figure.7}}
-\newlabel{fig:m6dt}{{7}{5}{Things\relax }{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Things\relax }}{5}{figure.8}}
-\newlabel{fig:m11dt}{{8}{5}{Things\relax }{figure.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces WARWICK Profile - MARE Distribution Per Motorway\relax }}{5}{table.2}}
-\newlabel{mapeglobal}{{II}{5}{WARWICK Profile - MARE Distribution Per Motorway\relax }{table.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Publised Profile - MARE Distribution Per Motorway\relax }}{5}{table.3}}
-\newlabel{mapeglobal}{{III}{5}{Publised Profile - MARE Distribution Per Motorway\relax }{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces WARWICK Profile - MARE Distribution Per Motorway\relax }}{5}{table.1}}
+\newlabel{mapeglobal}{{I}{5}{WARWICK Profile - MARE Distribution Per Motorway\relax }{table.1}{}}
 \bibcite{NTIS}{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces MARE over the times of the day for the M6\relax }}{6}{figure.7}}
+\newlabel{fig:m6dt}{{7}{6}{MARE over the times of the day for the M6\relax }{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces MARE over the times of the day for the M11\relax }}{6}{figure.8}}
+\newlabel{fig:m11dt}{{8}{6}{MARE over the times of the day for the M11\relax }{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces MARE across percentiles of travel time for the M6.\relax }}{6}{figure.9}}
+\newlabel{fig:m6q}{{9}{6}{MARE across percentiles of travel time for the M6.\relax }{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces MARE across percentiles of travel time for the M11.\relax }}{6}{figure.10}}
+\newlabel{fig:m11q}{{10}{6}{MARE across percentiles of travel time for the M11.\relax }{figure.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Future Work}{6}{section.8}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Publised Profile - MARE Distribution Per Motorway\relax }}{6}{table.2}}
+\newlabel{mapeglobal}{{II}{6}{Publised Profile - MARE Distribution Per Motorway\relax }{table.2}{}}
 \bibcite{long-term}{2}
 \bibcite{long-term-2}{3}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Things\relax }}{6}{figure.9}}
-\newlabel{fig:m6q}{{9}{6}{Things\relax }{figure.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Things\relax }}{6}{figure.10}}
-\newlabel{fig:m11q}{{10}{6}{Things\relax }{figure.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces MARE per Link on M6 and M11\relax }}{6}{table.4}}
-\newlabel{tab1}{{IV}{6}{MARE per Link on M6 and M11\relax }{table.4}{}}
-\newlabel{table:m6mape}{{IV}{6}{MARE per Link on M6 and M11\relax }{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Global MARE \& RMSE per Motorway\relax }}{6}{table.5}}
-\newlabel{mapeglobal}{{V}{6}{Global MARE \& RMSE per Motorway\relax }{table.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Future Work}{6}{section.8}}
-\@writefile{toc}{\contentsline {section}{References}{6}{section*.1}}
 \bibcite{should}{4}
 \bibcite{NN}{5}
 \bibcite{spectral2}{6}
@@ -123,3 +128,13 @@
 \bibcite{STL}{22}
 \bibcite{forecasting}{23}
 \bibcite{ttprofiles}{24}
+\bibcite{daubechies}{25}
+\bibcite{mallat}{26}
+\bibcite{morse}{27}
+\bibcite{morletwavelet}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces MARE per Link on M6 and M11\relax }}{7}{table.3}}
+\newlabel{tab1}{{III}{7}{MARE per Link on M6 and M11\relax }{table.3}{}}
+\newlabel{table:m6mape}{{III}{7}{MARE per Link on M6 and M11\relax }{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Global MARE \& RMSE per Motorway\relax }}{7}{table.4}}
+\newlabel{mapeglobal}{{IV}{7}{Global MARE \& RMSE per Motorway\relax }{table.4}{}}
+\@writefile{toc}{\contentsline {section}{References}{7}{section*.1}}
