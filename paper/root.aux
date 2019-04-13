@@ -58,8 +58,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Use of Exponentially Weighted Moving Average}{2}{subsection.3.1}}
 \newlabel{ewma}{{III-A}{2}{Use of Exponentially Weighted Moving Average}{subsection.3.1}{}}
 \newlabel{eq:ewma}{{1}{2}{Use of Exponentially Weighted Moving Average}{equation.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example of false predictions after a large deviation when using EWMA for forecasting.\relax }}{2}{figure.3}}
-\newlabel{fig:EWMA}{{3}{2}{Example of false predictions after a large deviation when using EWMA for forecasting.\relax }{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces False EWMA predictions after a large deviation.\relax }}{2}{figure.3}}
+\newlabel{fig:EWMA}{{3}{2}{False EWMA predictions after a large deviation.\relax }{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-B}Segmentation}{2}{subsection.3.2}}
 \newlabel{segmentation}{{III-B}{2}{Segmentation}{subsection.3.2}{}}
 \citation{ttprofiles}
@@ -74,6 +74,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Wavelet Time Series Decomposition}{3}{subsection.5.2}}
 \newlabel{decomposition}{{V-B}{3}{Wavelet Time Series Decomposition}{subsection.5.2}{}}
 \citation{FFT}
+\citation{STL}
+\citation{forecasting}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6. Right: Power of DWT of the extracted Background $\mathaccentV {vec}17E{B_t}$ series, as detailed in Section \ref  {decomposition}, for Link 1170079 of the M6\relax }}{4}{figure.4}}
 \newlabel{fig:wt}{{4}{4}{Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6. Right: Power of DWT of the extracted Background $\vec {B_t}$ series, as detailed in Section \ref {decomposition}, for Link 1170079 of the M6\relax }{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-C}Series Recombination}{4}{subsection.5.3}}
@@ -84,8 +86,6 @@
 \newlabel{algorithm}{{VI}{4}{WARWICK Travel Time Prediction Algorithm}{section.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}Naive Segmentation (Null)}{4}{subsection.6.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-B}WARWICK: Spectral Component}{4}{subsection.6.2}}
-\citation{STL}
-\citation{forecasting}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-C}WARWICK: Seasonality Component}{5}{subsection.6.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-D}WARWICK Hybrid Profile}{5}{subsection.6.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Things\relax }}{5}{figure.6}}
@@ -93,7 +93,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {VII}Accuracy Results}{5}{section.7}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces WARWICK Profile - MARE Distribution Per Motorway\relax }}{5}{table.1}}
 \newlabel{mapeglobal}{{I}{5}{WARWICK Profile - MARE Distribution Per Motorway\relax }{table.1}{}}
-\bibcite{NTIS}{1}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Publised Profile - MARE Distribution Per Motorway\relax }}{5}{table.2}}
+\newlabel{mapeglobal}{{II}{5}{Publised Profile - MARE Distribution Per Motorway\relax }{table.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces MARE over the times of the day for the M6\relax }}{6}{figure.7}}
 \newlabel{fig:m6dt}{{7}{6}{MARE over the times of the day for the M6\relax }{figure.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces MARE over the times of the day for the M11\relax }}{6}{figure.8}}
@@ -102,9 +103,10 @@
 \newlabel{fig:m6q}{{9}{6}{MARE across percentiles of travel time for the M6.\relax }{figure.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces MARE across percentiles of travel time for the M11.\relax }}{6}{figure.10}}
 \newlabel{fig:m11q}{{10}{6}{MARE across percentiles of travel time for the M11.\relax }{figure.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Future Work}{6}{section.8}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Publised Profile - MARE Distribution Per Motorway\relax }}{6}{table.2}}
-\newlabel{mapeglobal}{{II}{6}{Publised Profile - MARE Distribution Per Motorway\relax }{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces MARE per Link on M6 and M11\relax }}{6}{table.3}}
+\newlabel{tab1}{{III}{6}{MARE per Link on M6 and M11\relax }{table.3}{}}
+\newlabel{table:m6mape}{{III}{6}{MARE per Link on M6 and M11\relax }{table.3}{}}
+\bibcite{NTIS}{1}
 \bibcite{long-term}{2}
 \bibcite{long-term-2}{3}
 \bibcite{should}{4}
@@ -132,9 +134,7 @@
 \bibcite{mallat}{26}
 \bibcite{morse}{27}
 \bibcite{morletwavelet}{28}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces MARE per Link on M6 and M11\relax }}{7}{table.3}}
-\newlabel{tab1}{{III}{7}{MARE per Link on M6 and M11\relax }{table.3}{}}
-\newlabel{table:m6mape}{{III}{7}{MARE per Link on M6 and M11\relax }{table.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Global MARE \& RMSE per Motorway\relax }}{7}{table.4}}
 \newlabel{mapeglobal}{{IV}{7}{Global MARE \& RMSE per Motorway\relax }{table.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Future Work}{7}{section.8}}
 \@writefile{toc}{\contentsline {section}{References}{7}{section*.1}}
