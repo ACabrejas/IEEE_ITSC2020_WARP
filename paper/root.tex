@@ -2,9 +2,9 @@
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
 
-\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
-%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
 
 \IEEEoverridecommandlockouts                              % This command is only needed if 
                                                           % you want to use the \thanks command
@@ -25,7 +25,7 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \graphicspath{{./images/}}
-\newcolumntype{C}{>{\centering\arraybackslash}p{1.8cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{1.75cm}}
 \usepackage{hyperref}
 \hypersetup{pdftex,colorlinks=true,allcolors=blue}
 \usepackage{hypcap}
@@ -49,7 +49,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 
 \title{\LARGE \bf
-WARWICK algorithm for separating recurrent and outstanding congestion in Motorways and long-term travel time forecasting*
+WARWICK algorithm for separating recurrent and outstanding congestion in Motorways and long-term travel time estimation*
 }
 
 
@@ -73,30 +73,18 @@ WARWICK algorithm for separating recurrent and outstanding congestion in Motorwa
 
 
 \begin{abstract}
-We present the new WARWICK method for separating recurrent and outstanding congestion from a travel time time series using wavelets. 
+Accurate highway travel times estimation is a requirement for a working for Advanced Traveler Information Systems (ATIS).
+Here we present the WARWICK method for separating recurrent and outstanding congestion from a travel time time series using wavelet analysis and then produce estimates for the following week in an accurate and computationally inexpensive manner. 
 We train and test this method using 12 weeks of real time travel data gathered at link level in the M6 and M11 in the United Kingdom.
-The approach is based on a time travel series analysis of travel time data from the UK's National Traffic Information Service (NTIS).
+The approach is based on a time travel series analysis of travel time data from the UK's National Traffic Information Service (NTIS) currently in use.
 Time series of travel times are characterised by a noisy background component showing the expected seasonal patterns and occasional large spikes associated with congestion events.
-The separation algorithm here presented uses statistical analysis of the Wavelet Transform of the travel times across different time scales to split the original signal into two signals in the time-frequency domain: background and spikes, and then inverse transform them to use them for forecasting.
+The separation algorithm here presented uses statistical analysis of the Wavelet Transform of the travel times across different time scales to split the original signal into two signals in the time-frequency domain: background and spikes, and then inverse transform them to use them for estimation.
 We process and combine 8 weeks of these signals, using spectral filtering and non-parametric locally weighted regression (LWR) to predict travel time in the link in the following week with a resolution of one minute, repeating this process 4 times on a rolling basis.
 We find that the error is meaningfully reduced compared to estimates obtained by basic time segmentation of the data and compared to the estimates published by the NTIS system.
-
-Wavelet
-Augmented
-Regression
-With
-spIkes and
-baCKground
-
 \end{abstract}
 
 \section{Introduction} \label{Introduction}
 \subsection{Background} \label{Background}
-Incident detection algorithms yield a large number of false alarms and missed detections. This is mainly
-due to random temporal fluctuations or traffic noise that
-makes it difficult to differentiate between recurrent and
-non-recurrent congestion accurately
-
 Highways England (HE) is responsible for most Motorways and major roads in England, comprising the Strategic Road Network (SRN).
 The SRN is monitored by the National Traffic Information System \cite{NTIS}, which collects and processes travel time, speed, flow and overhead space data in real time using sensors on the road and in vehicles.
 The smallest components of the SRN are the so called links, which are segments of motorway between 500 and 20000 metres in length.
@@ -108,24 +96,18 @@ While the profiles, in fairly used roads, vary with the day of the week and time
 This display of stability over time, means that calculating profiles is a different problem when compared with short-term forecasting.
 Since there is no a-priori mathematical definition of typical travel times, here, we will take it as the value that minimises the Mean Absolute Relative Error (MARE) or Root Mean Squared Error (RMSE), when comparing it with the subsequently sampled real travel times.
 
-\subsection{Previous Work} \label{Previous Work}
-In this paper, we follow up on the future work indicated in \cite{ttprofiles}, aiming to provide with a novel algorithm that outputs one week of expected travel times, removing the heuristically set threshold in said paper.
-
-Our approach is based on statistical analysis of previous data and does not require any a-priori segmentation of days into classes. 
+In this paper, we follow up on the future work in \cite{ttprofiles}, providing a novel algorithm capable of generating one week of expected travel times, removing the heuristically set threshold in said paper and using only governmental agencies publicly available data.
+Our approach is based on spectral and statistical analysis of previous data and does not require any a-priori segmentation of days into classes. 
 Rather, the algorithm relies on patterns of intra- and inter-day variability which are learned from input data.
-
-The Continuous Wavelet Transform \cite{morletwavelet}
-
-
-***
-The available literature on travel times is extensive but most recent research focuses on short-term forecasting and with fewer studies looking into the long term \cite{long-term} \cite{long-term-2}. 
-From a methodological point of view statistical methods and machine learning take most of the attention \cite{should}. Within the last group, neural networks are getting a level or relevance \cite{NN} \cite{spectral2} .
+\subsection{Previous Work} \label{Previous Work}
+Available literature on travel times is extensive, but most recent research is focuses on short-term forecasting with fewer studies looking into the long term \cite{long-term} \cite{long-term-2}. 
+From a methodological point of view, statistical methods and machine learning take most of the attention \cite{should}. Within the last group, neural networks are getting a level or relevance \cite{NN} \cite{spectral2} .
 Others take closer approaches to this paper: using historical data \cite{simple} \cite{dynamic-historic}, differentiating between peak and non-peak \cite{peak-historic}, performing spectral analysis \cite{spectral1} or Locally Weighted Regressions \cite{williams} \cite{sun} \cite{zhong} \cite{chowdhury} \cite{acqua} \cite{vana}.
+Wavelet use has been previously found useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or don't focus on the spectral properties across timescales or are not real-world data based.
 Comparisons between some of these studies and others can be found in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}. 
 Most of these methods have been specifically tuned for the conditions on which they have been developed and transferability to other sites is often not evaluated.
-To assess the transferability of our method, it is tested on three different motorways and scored independently in each of them.
-The method here presented, uses a combination of Continuous Wavelet Transform, spectral analysis, and Locally Weighted Regression (LWR).
-***
+To assess the transferability of our method, it is tested on two different motorways and 39 sites and scored independently in each of them.
+The method here presented, uses a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
 \section{Examples of Travel Times} \label{Examples of Travel Times}
 The most straightforward way to measure the instantaneous state of traffic over a stretch of road is the vehicles' travel times. 
 These are normally measured by induction loops placed under the lanes. 
@@ -155,9 +137,9 @@ As explained in \cite{ttprofiles}, the most basic approach to profile estimation
 In this manner, the estimated profile $\hat{x}(i,d+1)$ on the $i-th$ minute of a given date $d$, for a memory parameter $\alpha \in [0,1]$ and with measured travel time $x_i^d$, will be:
 \begin{equation}
 \begin{aligned}
-\hat{x}^{d+1}_i &= \alpha * x^{d}_{i} + (1-\alpha)*\hat{x}^{d}_{i} \\ 
-&= \alpha * x^{d}_{i} + \alpha^2 * x^{d-1}_{i} + (1-\alpha - \alpha^2) \hat{x}^{d-1}_{i}\\ 
-&= \alpha * x^{d}_{i} + \alpha^2 * x^{d-1}_{i} + \alpha^3 * x^{d-2}_{i} + \bigg( 1-\sum_{i=1}^{3} \alpha^i \bigg) \hat{x}^{d-1}_{i}\\
+\hat{x}^{d+1}_i \!&= \alpha  x^{d}_{i} + (1-\alpha)\hat{x}^{d}_{i} \\ 
+&= \alpha  x^{d}_{i} + \alpha^2  x^{d-1}_{i} + (1-\alpha - \alpha^2) \hat{x}^{d-1}_{i}\\ 
+&= \alpha  x^{d}_{i} + \alpha^2  x^{d-1}_{i} + \alpha^3  x^{d-2}_{i}\! +\! \bigg( 1\!-\!\sum_{i=1}^{3} \alpha^i \bigg) \hat{x}^{d-1}_{i}\\
 &= ...
 \end{aligned}
 \label{eq:ewma}
@@ -219,7 +201,7 @@ As described in \cite{ttprofiles}, during our initial exploration of the data we
 	\end{itemize}
 \end{itemize}
 
-In this context, if we assume Gaussian noise $\xi$, and that the Background and Spike components will operate in an additive way, the decomposition will be of the form:
+In this context, if we assume Gaussian noise $\xi$, and given the additive properties of wavelet decomposition, the decomposition will be of the form:
 \begin{equation}
 \textrm{Travel Time}_t  = \textrm{Background}_t + \textrm{Spikes}_t + \xi
 \end{equation}
@@ -234,7 +216,7 @@ Ideally, after this seasonal extraction step of the decomposition, the remainder
 	\label{fig:wt}
 \end{figure*}
 
-To perform the decomposition, we will take advantage of the additive properties of the wavelet transform. First the time series $\vec{x_t}$ of length $t$, and elements $x_i$ with $i in [0,t]$ is turned into a zero mean series $\vec{x_t} - mean(\vec{x_t})$ and used as input for a Continuous Wavelet Transform (CWT) \cite{daubechies} \cite{mallat} using a Morse wavelet \cite{morse} and 140 timescales levels.
+To perform the decomposition, we will take advantage of the additive properties of the wavelet transform. First the time series $\vec{x_t}$ of length $t$, and elements $x_i$ with $i \in [0,t]$ is turned into a zero mean series $\vec{x_t} - mean(\vec{x_t})$ and used as input for a Continuous Wavelet Transform (CWT) \cite{daubechies} \cite{mallat} using a Morse wavelet \cite{morse} and 140 timescales levels.
 The output of this first transform is a complex matrix $\vec{W}_{\textrm{levels}\,\times\, t}$, for the elements of which we calculate their modulus $\rho$, phase $\phi$ and power $P$. 
 A heatmap of $P^2$ for the original time series can be seen in the first subplot in Figure \ref{fig:wt}.
 In the figure we can observe that the most influential dynamics occurring during the series length, happen at the timescales where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes).
@@ -252,7 +234,7 @@ After this step, we apply the Inverse DWT to $\vec{B_t}$ and $\vec{S_t}$, obtain
 \subsection{Series Recombination}
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/Splitting.png}}
-	\caption{Recombination}
+	\caption{Recombination post Inverse Wavelet Transform}
 	\label{fig:splitting}
 \end{figure}
 
@@ -271,68 +253,65 @@ For future prediction steps, an indicator function was defined, taking for every
 
 
 \section{WARWICK Travel Time Prediction Algorithm} \label{algorithm}
-Given the cyclic nature of traffic, the aim was a prediction algorithm that could account for the periodic variations and endemic congestion while being resilient to fluctuations and rare events. This algorithm also should:
+Given the cyclic nature of traffic, the aim was a prediction algorithm that accounts for the periodic variations and endemic congestion while being resilient to fluctuations and rare events. This algorithm also should meet the tests set in \cite{ttprofiles}, namely:
 \begin{itemize}
-	\item Be robust, mitigating the propagation of isolated events into future forecasts, unlike methods using EWMA.
+	\item Be robust, mitigating the propagation of isolated events into future estimates, unlike methods using EWMA.
 	\item Not require the use of time segmentation and be valid for regular and "special" dates.
 	\item Be location agnostic, the internal parameters should be set algorithmically based on the data.
 	\item Have Gaussian, mean 0, uncorrelated residuals.
 	\item Near flat Trend term, given the different time scales between seasonal cycles and changes in the general motorway flow.
 \end{itemize}
-
+For this we introduce the WARWICK algorithm (Wavelet Augmented Regression With spIkes and baCKground) from section \ref{algostart}.
 \subsection{Naive Segmentation (Null)}
-To obtain an accurate comparison of the performance of the algorithm developed in the following subsections, an example of basic segmentation was coded. 
-This involved a weighted combination of the training data points using uniform weights. 
-In this way, for the $i-th$ minute of a week and using a training set composed of the previous of $n$ weeks, the Naive Segmentation (NS) profile is:
+To obtain an accurate comparison of the performance of the algorithm developed in the following subsections, we coded a basic implementation of a segmentation based algorithm. 
+It involves a weighted combination of the training data points using uniform weights. 
+For the $i-th$ minute of a given week and using a training set composed of the previous of $n$ weeks (8 in this paper), the Naive Segmentation (NS) profile is:
 \begin{equation}
 \hat{x}(i,n) = \sum_{\textrm{week}=1}^{n} \frac{x^i_n}{n} 
 \end{equation}
 
 \subsection{WARWICK: Spectral Component}
-The main difficulty when dealing with the Background signal is the low amplitude, high frequency fluctuations that can be found almost ubiquitously. 
-Signal smoothing can be performed by completely removing a range of frequencies while the information bearing bands are retained. For this task, the Fast Fourier Transform (FFT) \cite{FFT} was used as follows:
+\label{algostart}
+The main issue with the Background signal is the low amplitude, high frequency fluctuations that can be found almost ubiquitously. 
+Signal smoothing can be performed in the frequency domain by removing a range of frequencies while retaining the information bearing bands.
+For this task, the Fast Fourier Transform (FFT) \cite{FFT} was used as follows:
 \begin{enumerate}
-
 	\item Calculate Background Power Spectrum using FFT
 	\item Remove frequencies corresponding to periods under 4 hours and over 1 week
 	\item Repeat for all $n$ weeks in training set
     \item Apply EWMA to the modified weekly Power Spectra
 	\item Compute the Inverse FFT Transform
-
 \end{enumerate}
-\subsection{WARWICK: Seasonality Component}
-Seasonal-Trend Decomposition based on LOESS (STL) \cite{STL} was the chosen algorithm for the seasonality analysis since it can handle any type of seasonality, allowing the user to control how it changes over time as well as the smoothness of the trend-cycle while being highly robust to outliers \cite{forecasting}.\\
+\subsection{WARWICK: Seasonal Component}
+Seasonal-Trend Decomposition based on LOESS (STL) \cite{STL} was used for the seasonality analysis since it can handle any type of seasonality, allowing the user to control its change over time as well as the smoothness of the trend while being very robust to outliers \cite{forecasting}.\\
 
-Below, the sequence of steps taken to extract the Seasonality Components that can be observed in Fig. \ref{fig:ACF} is described in line with the schematic data streams represented in Fig. \ref{fig:flowchart}. 
-Note that this should be applied to the $n$ training weeks as a single time series.
+Below, the sequence of steps taken to extract the Seasonality Components is described, in line with the data streams represented in Fig. \ref{fig:dataflow}.
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=\linewidth]{./images/flow_crop.pdf}}
+	\caption{Flowchart of the data streams in the algorithm}
+	\label{fig:dataflow}
+\end{figure}
+ 
+Note that theses must be applied to the $n$ training weeks as a single unit.
 \begin{enumerate}
-	\item Decomposition of Background for daily seasonality
+	\item Analyse Background for daily seasonality
 	\item Extract and sum the series corresponding Trend and Remainder from Step 1
-	\item Decomposition of output from 2 for weekly seasonality
+	\item Analyse output from 2 for weekly seasonality
 	\item Add daily and weekly Seasonal components from Step 1 and Step 3 to obtain global seasonality
 	\item Average seasonality across training weeks
 	\item Linearise Trend term from output of Step 3
 	\item Add linearised trend to seasonality obtained in Step 6
 	\item STL Decomposition of Spikes for weekly seasonality
-	\item Extract Spike's Seasonality corresponding to the number of weeks for forecasting
 	\item Add Spike's Seasonal component to the output of 8
 \end{enumerate}
-To ensure a successful decomposition, after performing Step 3, the Background's Remainder should be zero mean, Gaussian distributed. Background's Trend should have a near zero slope. These outcomes should also hold if performed again after Step 8, with the addition that the trend should also be close to zero in absolute value, since the time scales in which such a global trend can meaningfully vary should be much greater than the prediction scope of this algorithm.
+In a successful analysis, after Step 3, the Background's Remainder should be zero mean, Gaussian distributed.
+Background's Trend should have a near zero slope. This should hold if performed again after Step 8, with the addition that the Trend should also be nearly zero in absolute value, since the time scales in which a global Trend can meaningfully vary should be much greater than the prediction scope of this algorithm.
 \subsection{WARWICK Hybrid Profile}
-In order to create the final Seasonal-Spectral Hybrid profile (Hybrid), one of the two forecasts generated in the previous points is taken, depending on what is the identified regime: 
+In order to create the final Seasonal-Spectral WAWRICK profile, one of the two estimations generated in the previous points is taken, depending on what is the identified regime: 
 
 \begin{equation}
-\textrm{Hybrid} = \textrm{Seasonal} * \delta_{\textrm{spike}} + \textrm{Spectral} * (1 - \delta_{\textrm{spike}})
+\textrm{WARWICK} = \textrm{Seasonal} * \delta_{\textrm{spike}} + \textrm{Spectral} * (1 - \delta_{\textrm{spike}})
 \end{equation}
-
-
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/flow_temp.pdf}}
-	\caption{Things}
-	\label{fig:dataflow}
-\end{figure}
-
-
 
 \section{Accuracy Results}
 \begin{table*}[bp]
@@ -368,8 +347,8 @@ In order to create the final Seasonal-Spectral Hybrid profile (Hybrid), one of t
 		\label{mapeglobal}
 	\end{center}
 \end{table*}
-In this section the accuracy of the algorithm described above is compared against the Published Profiles and the NS Model. 
-For each temporal point $i$, with a prediction $\hat{x_i}$, and an actual value of $x_i$, the Mean Average Relative Error (MARE) is defined below as:
+In this section the accuracy of the WARWICK algorithm is compared against the Published Profiles and the NS Model. 
+For each temporal point $i$, with a prediction $\hat{x_i}$, and an actual value of $x_i$, the Mean Average Relative Error (MARE) is defined as:
 \begin{equation}
 \textrm{MARE} =\frac{ \left( \sum_{i=1}^{n} \frac{\|x_i - \hat{x_i}\|}{x_i}\right)}{n}
 \end{equation}
@@ -378,7 +357,7 @@ For complete Motorways, the Root Mean Squared Error (RMSE) has been calculated f
 \textrm{RMSE} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \hat{x_i})^2}{n}}
 \end{equation}
 In both cases the error for a Link is defined as the average MARE or RMSE across all prediction points.
-The error for a Motorway is defined as the average of the error across all its links.
+The error for a Motorway is the average of the error across all its links.
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/M6_daytime_8_12.pdf}}
 	\caption{MARE over the times of the day for the M6}
@@ -390,29 +369,22 @@ The error for a Motorway is defined as the average of the error across all its l
 	\label{fig:m11dt}
 \end{figure}
 
-
-Here, the accuracy of the algorithm is compared against the Published Profiles and the NS Profile across all percentiles of travel time.
-As it can be seen in Figs. \ref{fig:m6q} and \ref{fig:m11q}, the WARWICK Profile has a higher accuracy than the Published Profiles and the NS Model for all percentiles of travel time except for the most extreme values where they all perform poorly.\\
-The most meaningful difference occurs between percentiles $[50-95]$, where the Published Profile starts to suffer from higher inaccuracy.
+As it can be seen in Figs. \ref{fig:m6q} and \ref{fig:m11q}, the WARWICK Profile has a higher accuracy than the Published Profiles and the NS Model for all percentiles of travel time except for the highest values where they all perform poorly.
+The greatest difference occurs between percentiles $[50-95]$, where the Published Profile becomes more inaccurate.
 
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/M6_quantile_1_rms_8_12.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M6_quantile_1_ab_8_12.pdf}}
 	\caption{MARE across percentiles of travel time for the M6.}
 	\label{fig:m6q}
 \end{figure}
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/M11_quantile_1_rms_8_12.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/M11_quantile_1_ab_8_12.pdf}}
 	\caption{MARE across percentiles of travel time for the M11.}
 	\label{fig:m11q}
 \end{figure}
-
-Here, the accuracy of the algorithm is compared against the Published Profiles and the NS Profile across the times of the day.
-As it can be seen in Figures \ref{fig:m6dt} and \ref{fig:m11dt}, the Hybrid Profile has a higher accuracy than the Published Profiles and the NS Model for all times of the day, all locations and training lengths. 
-The most relevant improvement occurs during the morning and evening peak hours, where the algorithm presented in this paper does not accuse meaningful performance worsening relative to the morning plateau when compared with the other two profiles.\\
-In the case of the M6 and M11, where the training set is richer, the error at peak times is reduced by at least 50\% in all cases, reaching as much as 68.7\% in the case of the M6 morning rush.
-In the case of the M25, which is congested on a regular basis, the errors in the Published Profile during peak times are slightly lower than on the other cases, indicating that, given the use of EWMA for its calculation, recurrent congestion is better captured by it. 
-Even in this case, the proposed algorithm performs significantly better than any of the other two, except for a brief window between 6-7AM when it is outperformed by the NS Model.
-
+In Figures \ref{fig:m6dt} and \ref{fig:m11dt}, WARWICK shows a higher accuracy than the Published Profiles and the NS Model for all times of the day, locations and training lengths. 
+The most relevant improvement happens during morning and evening peak hours, with no meaningful performance worsening relative to the morning plateau when compared with the other two profiles.
+The error at peak times is reduced by at least 50\% in all cases, reaching as much as 63.4\% in the case of the M6 morning rush.
 \begin{table}[htbp]
 	\caption{MARE per Link on M6 and M11}
 	\begin{center}
@@ -527,12 +499,14 @@ Even in this case, the proposed algorithm performs significantly better than any
 \end{table}
 
 \section{Future Work}
-The algorithm presented above meets the requirements described in Section \ref{algorithm} except for the need of an heuristically set threshold to separate the original Travel Time signal into Background and Spikes.
-One potential way of reaching compliance with these requirements is to perform the decomposition by applying a Wavelet Transform and separating background from spikes based on statistical analysis of the transformed time series in terms of how their Wavelet coefficients fluctuate over time within a scale level. 
-In the future a sensitivity analysis should be conducted to explore the limits of the algorithm in terms of minimum training data set, as well as maximum performance with increased training.\\
+The algorithm presented above meets the requirements described in Section \ref{algorithm} and earlier defined in \cite{ttprofiles}.
+In the future a sensitivity analysis should be conducted to explore the limits of the algorithm in terms of minimum training data set, as well as maximum performance with increased training.
+Also, more sophisticated analysis of the Wavelet Transform series can be achieved, focusing on the information-bearing bands and using adaptive thresholds for the separation.
+Given the flexibility offered by this method, it could be extended for incident detection or adaptation to other problems besides road traffic.
 
 \begin{thebibliography}{00}
 \bibitem{NTIS} The Highways Agency, "National Transport Information System Publish Services", Technical Report, 2011. 
+\bibitem{ttprofiles} Cabrejas-Egea, A. , de Ford, P., \& Connaughton, C. (2018, November). Estimating Baseline Travel Times for the UK Strategic Road Network. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 531-536). IEEE.
 \bibitem{long-term} J. Moreira, A. Jorge, J. Sousa, C. Soares 2012. Comparing state-of-the-art regression methods for long term travel time prediction. Intelligent Data Analysis. 16. 10.3233/IDA-2012-0532. 
 \bibitem{long-term-2} G. Klunder, P. Baas, F. op de Beek. 2018. A long-term travel time prediction algorithm using historical data. 14th World Congress on Intelligent Transport Systems, ITS 2007; Beijing; China; October 2007 through 13 October 2007, 1191-1198
 \bibitem{should} Kirby, H. R., Watson, S. M., Dougherty, M. S. 1997. Should we use neural networks or statistical models for short-term motorway traffic forecasting?. International Journal of Forecasting, 13(1), 43-50.
@@ -548,19 +522,23 @@ In the future a sensitivity analysis should be conducted to explore the limits o
 \bibitem{chowdhury} Chowdhury, N. K., Nath, R. P. D., Lee, H., Chang, J. 2009. Development of an effective travel time prediction method using modified moving average approach. In International Conference on Knowledge-Based and Intelligent Information and Engineering Systems (pp. 130-138). Springer, Berlin, Heidelberg.
 \bibitem{acqua} Dell'Acqua, P., Bellotti, F., Berta, R., De Gloria, A. 2015. Time-aware multivariate nearest neighbor regression methods for traffic flow prediction. IEEE Transactions on Intelligent Transportation Systems, 16(6), 3393-3402.
 \bibitem{vana} Kumar, S. V., Vanajakshi, L. 2015. Short-term traffic flow prediction using seasonal ARIMA model with limited input data. European Transport Research Review, 7(3), 21.
+\bibitem{nonlinear} Li, Sheng. "Nonlinear combination of travel-time prediction model based on wavelet network." Proceedings. The IEEE 5th International Conference on Intelligent Transportation Systems. IEEE, 2002.
+\bibitem{samant} Samant, A., and H. Adeli. "Feature extraction for traffic incident detection using wavelet transform and linear discriminant analysis." Computer‐Aided Civil and Infrastructure Engineering 15.4 (2000): 241-250.
+\bibitem{ghosh} Ghosh‐Dastidar, Samanwoy, and Hojjat Adeli. "Wavelet‐clustering‐neural network model for freeway incident detection." Computer‐Aided Civil and Infrastructure Engineering 18.5 (2003): 325-338.
+\bibitem{hojjat} Jiang, Xiaomo, and Hojjat Adeli. "Dynamic wavelet neural network model for traffic flow forecasting." Journal of transportation engineering 131.10 (2005): 771-779.
+\bibitem{basu} Tchrakian, Tigran T., Biswajit Basu, and Margaret O'Mahony. "Real-time traffic flow forecasting using spectral analysis." IEEE Transactions on Intelligent Transportation Systems 13.2 (2012): 519-526.
+\bibitem{hang} Yang, Hang, et al. "A hybrid method for short-term freeway travel time prediction based on wavelet neural network and Markov chain." Canadian Journal of Civil Engineering 45.2 (2017): 77-86.
+\bibitem{adeli} Dharia, Abhijit, and Hojjat Adeli. "Neural network model for rapid forecasting of freeway link travel time." Engineering Applications of Artificial Intelligence 16.7-8 (2003): 607-613.
 \bibitem{nikovski} Nikovski D, Nishiuma N, Goto Y, Kumazawa H. Univariate short-term prediction of road travel times. Intelligent Transportation Systems, 2005. Proceedings. 2005 Sep 13 (pp. 1074-1079). IEEE.
 \bibitem{lint} van Hinsbergen, C.P.IJ., van Lint, J.W.C.,  Sanders, F. M. Short Term Traffic Prediction Models. ITS World Congress, Beijing, China. 2007.
 \bibitem{mori} Mori U, Mendiburu A, Alvarez M, Lozano JA. A review of travel time estimation and forecasting for Advanced Traveller Information Systems. Transportmetrica A: Transport Science. 2015 Feb 7;11(2):119-57.
 \bibitem{ser} Lana I, Del Ser J, Velez M, Vlahogianni EI. Road Traffic Forecasting: Recent Advances and New Challenges. IEEE Intelligent Transportation Systems Magazine. 2018;10(2):93-109.
-\bibitem{FFT} J. W. Cooley and J. W. Tukey, "An algorithm for the machine calculation of complex Fourier series", Mathematics of computation, 1965, vol. 19, no 90, p. 297-301.
-\bibitem{STL} R. B. Cleveland, W. S. Cleveland, J. E. McRae and I. Terpenning, "STL: A Seasonal-Trend Decomposition Procedure Based on Loess", Journal of Official Statistics, vol. 6, 1990, pp. 3-73.
-\bibitem{forecasting} R. J. Hyndman and G. Athanasopoulos, "Forecasting: Principles and Practice", Otexts, 2013.
-\bibitem{ttprofiles} Cabrejas-Egea, A. , de Ford, P., \& Connaughton, C. (2018, November). Estimating Baseline Travel Times for the UK Strategic Road Network. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 531-536). IEEE.
+\bibitem{morletwavelet} Grossmann, Alexander, and Jean Morlet. "Decomposition of Hardy functions into square integrable wavelets of constant shape." SIAM journal on mathematical analysis 15.4 (1984): 723-736.
 \bibitem{daubechies} Daubechies, Ingrid. Ten lectures on wavelets. Vol. 61. Siam, 1992.
 \bibitem{mallat} Mallat, Stéphane. A wavelet tour of signal processing. Elsevier, 1999.
 \bibitem{morse} Olhede, Sofia C., and Andrew T. Walden. "Generalized morse wavelets." IEEE Transactions on Signal Processing 50.11 (2002): 2661-2670.
-\bibitem{morletwavelet} Grossmann, Alexander, and Jean Morlet. "Decomposition of Hardy functions into square integrable wavelets of constant shape." SIAM journal on mathematical analysis 15.4 (1984): 723-736.
+\bibitem{STL} R. B. Cleveland, W. S. Cleveland, J. E. McRae and I. Terpenning, "STL: A Seasonal-Trend Decomposition Procedure Based on Loess", Journal of Official Statistics, vol. 6, 1990, pp. 3-73.
+\bibitem{forecasting} R. J. Hyndman and G. Athanasopoulos, "Forecasting: Principles and Practice", Otexts, 2013.
+\bibitem{FFT} J. W. Cooley and J. W. Tukey, "An algorithm for the machine calculation of complex Fourier series", Mathematics of computation, 1965, vol. 19, no 90, p. 297-301.
 \end{thebibliography}
-
-
 \end{document}

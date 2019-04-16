@@ -9,7 +9,7 @@ library(ggplot2)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ## Choose motorway
-mX <- "m11"
+mX <- "m6"
 wavelet = "morse"
 
 link_number = 1
@@ -22,6 +22,7 @@ file_name2 = paste("./03_background_spikes_matlab_to_r/",wavelet,"/",mX,"_link_"
 
 background = fread(file = file_name1, header = F, sep = ',')[[1]]
 spikes = fread(file = file_name2, header = F, sep = ',')[[1]]
+spikes[spikes<0.5]=0
 
 
 labels_mx = c("M6", "M11", "M25")
@@ -30,12 +31,13 @@ if(mX=="m6"){label_mx = labels_mx[1]}else if(mX=="m11"){label_mx = labels_mx[2]}
 background_sel = background[(1+10080*week_start):(10080*week_start+10080*length_weeks)]
 spikes_sel = spikes[(1+10080*week_start):(10080*week_start+10080*length_weeks)]
 spikes_plot = rep(0, length(spikes_sel))
-spikes_plot[spikes_sel!=0] = spikes_sel[spikes_sel!=0] + background_sel
+spikes_plot = spikes_sel + background_sel
 spikes_plot[spikes_sel==0] = NA
+background_sel[spikes_sel!=0] = NA
 
 time = seq(1:length(spikes_plot))
 
-plot_data = data.frame(Spikes = spikes_plot, Background = background, Time=time)
+plot_data = data.frame(Spikes = spikes_plot, Background = background_sel, Time=time)
 
 plot_data_long = melt(plot_data, id="Time")
 
