@@ -52,4 +52,9 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
     3. Histogram of errors
     4. Table with % of samples following within different precision limits
 
-![Alt](./paper/images/M6_daytime_8_12.pdf)
+
+<object data="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
