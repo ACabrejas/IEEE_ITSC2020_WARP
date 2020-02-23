@@ -51,3 +51,5 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
     2. Average MARE and RMSE error per motorway
     3. Histogram of errors
     4. Table with % of samples following within different precision limits
+
+![M6_Daytime_Results](./paper/images/M6_daytime_8_12.pdf)
