@@ -1,22 +1,21 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Background}{section.1}% 2
 \BOOKMARK [2][-]{subsection.1.2}{Previous Work}{section.1}% 3
-\BOOKMARK [1][-]{section.2}{Examples of Travel Times}{}% 4
+\BOOKMARK [1][-]{section.2}{Travel times in Motorways}{}% 4
 \BOOKMARK [1][-]{section.3}{Basic methods for profile estimation}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Use of Exponentially Weighted Moving Average}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Segmentation}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Data}{}% 8
-\BOOKMARK [2][-]{subsection.4.1}{Data Gathering and Selection}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.2}{Data Contents}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Background and Spikes}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{Characteristics}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{Wavelet Time Series Decomposition}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.3}{Series Recombination}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{WARWICK Travel Time Prediction Algorithm}{}% 15
-\BOOKMARK [2][-]{subsection.6.1}{Naive Segmentation \(Null\)}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.2}{WARWICK: Spectral Component}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{WARWICK: Seasonal Component}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.4}{WARWICK Hybrid Profile}{section.6}% 19
-\BOOKMARK [1][-]{section.7}{Accuracy Results}{}% 20
-\BOOKMARK [1][-]{section.8}{Future Work}{}% 21
-\BOOKMARK [1][-]{section*.1}{References}{}% 22
+\BOOKMARK [2][-]{subsection.3.1}{Exponentially Weighted Moving Average for Profiles}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Time-based Segmentation}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Data Selection and Contents}{}% 8
+\BOOKMARK [1][-]{section.5}{Background and Spikes}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Characteristics}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Wavelet Time Series Decomposition}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Analysis of Extracted Background and fitness of method}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.4}{Series Recombination}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{WARP Travel Time Prediction Algorithm}{}% 14
+\BOOKMARK [2][-]{subsection.6.1}{Naive Segmentation \(Null\)}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.2}{WARP: Spectral Component}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.3}{WARP: Seasonal Component}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.4}{WARP Hybrid Profile}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Accuracy Results}{}% 19
+\BOOKMARK [1][-]{section.8}{Conclusion and Future Work}{}% 20
+\BOOKMARK [1][-]{section*.1}{References}{}% 21
