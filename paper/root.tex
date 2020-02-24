@@ -97,21 +97,21 @@ Traffic profiles contain, for each minute of a day in a given date, the expected
 These profile values are published together with the raw gathered average travel times, but the methodology followed to calculate one from the other is not publicly available.
 
 While the profiles, in fairly used roads, have a great variation depending on the time of the day and the day of the week, their inter-week variation remains low, with major trends changes taking longer (order of months) than the biggest temporal unit considered (weeks). 
-This display a slow rate of change with respect to the data frequency, meaning that to calculate a profile is significantly different than short-term forecasting.
+This displays a slow rate of change with respect to the data frequency, meaning that to calculate a profile is significantly different than short-term forecasting.
 Since there is no a-priori mathematical definition of traffic profiles (common travel times), here, we will define it as the collection of values that jointly minimise the Root Mean Squared Error (RMSE) or Mean Absolute Relative Error (MARE), when comparing it with the subsequently sampled real travel times.
 
-In this paper, we follow up on the future work in \cite{ttprofiles}, providing a novel algorithm capable of generating one week of expected travel times, using a single parameter and using only governmental agencies publicly available data.
+In this paper, we follow up on the future work in \cite{ttprofiles}, providing a novel algorithm capable of generating one week of expected travel times, using a single parameter and using only publicly available data from governmental agencies.
 This approach stems from spectral and statistical analysis of recent historical data and removes the requirement of any prior form of segmentation of times and days into different classes. 
 Instead, the algorithm relies on pattern discovery for intra- and inter-day variability which it computes directly from input data.
 \subsection{Previous Work} \label{Previous Work}
 There is extensively available literature on travel times, albeit recent research is mostly focused on forecasting in the shorter term, with lesser presence of long term estimation studies \cite{long-term} \cite{long-term-2}. 
 Machine learning and statistical analysis methods receive the most attention \cite{should}. In machine learning, neural networks are recently having a high relevance \cite{NN} \cite{spectral2}.
 Other approaches are closer to the methods here presented: making use of historical data \cite{simple} \cite{dynamic-historic}, differentiating between rush and non-rush hour \cite{peak-historic}, using spectral methods \cite{spectral1} or Locally Weighted Regressions \cite{williams} \cite{sun} \cite{zhong} \cite{chowdhury} \cite{acqua} \cite{vana}.
-Wavelet use has been previously found useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or don't focus on the spectral properties across timescales or are not real-world data based.
+Wavelet use has been previously found useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or do not focus on the spectral properties across timescales or are not real-world data based.
 Relevant comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}. 
 Among these methods, the transferability to other locations is not often evaluated, being tuned for a specific location with its own specific conditions.
 In order to ensure transferability, our method is examined on 39 individual locations across two motorways and independently scored for each site.
-The work presented here, makes use of a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
+The work presented here makes use of a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
 \section{Travel times in Motorways} \label{Travel times in Motorways}
 Vehicles' travel times provide us with the most straightforward way of measuring the state of the traffic flow in a length of road.
 The average travel time in a given minute of the day on a specific section of road, will be the average time to transverse the space from the entry to the exit loops for all vehicles that passed through.
