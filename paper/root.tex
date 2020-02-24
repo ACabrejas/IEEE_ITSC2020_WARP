@@ -262,10 +262,10 @@ It can be smoothed by discarding, in the frequency domain, the frequencies that 
 Once this step is performed, and since large events have been removed previously, an EWMA can be applied to the modified weekly Power Spectra in the FFT, to then compute the Inverse FFT Transform to obtain our Background Prediction.
 \subsection{WARP: Seasonal Component}
 The seasonal component is computed via Seasonal-Trend Decomposition based on LOESS (STL) \cite{STL}.
-STL is resilient to outliers, can manage any combination of seasonalities, allowing to control their change over time as well as the smoothness of the trend \cite{forecasting}.
+STL is resilient to outliers and can manage any combination of seasonalities, allowing to control their change over time as well as the smoothness of the trend \cite{forecasting}.
 
 We begin by isolating the daily seasonality $S_d$ from the entire Background training series using STL.
-Trend and remainder are summed and re-analysed for weekly seasonality $S_w$, this step also produces a trend series $T_r$ and a remainder which should be Gaussian distributed, zero mean.
+Trend and remainder are summed and re-analysed for weekly seasonality $S_w$. This step also produces a trend series $T_r$ and a remainder which should be Gaussian distributed, zero mean.
 Global seasonality calculated as $S_g = S_d + S_w$.
 We then average the seasonality over the training weeks to obtain a value for each minute of the week we are to estimate.
 Then, $T_r$, nearly flat as per \ref{algorithm}, is linearised to obtain a baseline series $B_t$, and the Baseline prediction is $B_p = B_t + G_s$.
