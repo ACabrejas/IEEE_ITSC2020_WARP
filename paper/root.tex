@@ -114,25 +114,25 @@ In order to ensure transferability, our method is examined on 39 individual loca
 The work presented here makes use of a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
 \section{Travel times in Motorways} \label{Travel times in Motorways}
 Vehicles' travel times provide us with the most straightforward way of measuring the state of the traffic flow in a length of road.
-The average travel time in a given minute of the day on a specific section of road, will be the average time to transverse the space from the entry to the exit loops for all vehicles that passed through.
+The average travel time in a given minute of the day on a specific section of road will be the average time to transverse the space from the entry to the exit loops for all vehicles that passed through.
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{./images/Travel_Time.pdf}}
 \caption{Link 1170079, M6. Travel Time over 28 days of minutely data between 07/Mar/2016 and 04/Apr/2016.}
 \label{fig:travel_time}
 \end{figure}
 In Figure \ref{fig:travel_time}, it can be observed that most of the time, the travel time in a link follows vaguely a repeating pattern during most days, with minima located at night matching the bounded free flow time (except for speeding drivers).
-As the morning rush starts, travel time will rise leading to the morning traffic jams which are generated from the collective drivers behaviour.
-More effects of this collective dynamics can be observed in the afternoon during the evening rush; normally being able to find a plateau between these two peaks.
+As the morning rush starts, travel time will rise leading to the morning traffic jams which are generated from the collective drivers' behaviour.
+More effects of these collective dynamics can be observed in the afternoon during the evening rush, normally being possible to find a plateau between these two peaks.
 Finally, travel times progressively decay towards the night's free-flow regime.
 In Figure \ref{fig:travel_time}, we observe a series of peaks found outside of this normally bounded yet oscillating behaviour. 
-Travel time in these events can climb up to several times fold the normal amount.
+Travel time in these events can climb up to several times the normal amount.
 The predictability in terms of inter-oscillation period and amplitude of these larger oscillations is much lower than the recurrent component described above.
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/ACF_M6_Link3.pdf}}
 	\caption{Autocorrelation function of Travel Time in figure \ref{fig:travel_time} with a maximum lag of 4 weeks (1440 points/day). Double seasonality can be observed in the weekly and daily periods.}
 	\label{fig:ACF}
 \end{figure}
-Lastly, in figure \ref{fig:ACF}, we can see the Autocorrelation Function for the Travel Time, plotted with a maximum lag of 4 weeks. Here we can see a double seasonal pattern with periods of 1 day and 1 week.
+Lastly, in Figure \ref{fig:ACF}, we can see the Autocorrelation Function for the Travel Time, plotted with a maximum lag of 4 weeks. Here we can see a double seasonal pattern with periods of 1 day and 1 week.
 This regularity seen in time travel time series can and is often used by modellers to approximate and forecast travel times as is explored over the next sections.
 \section{Basic methods for profile estimation}\label{Basic methods for profile estimation}
 \subsection{Exponentially Weighted Moving Average for Profiles} \label{ewma}
