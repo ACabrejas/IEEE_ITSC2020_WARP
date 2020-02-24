@@ -192,9 +192,9 @@ In this context, if we assume Gaussian noise $\xi$, and given the additive prope
 \begin{equation}
 \textrm{Travel Time}_t  = \textrm{Background}_t + \textrm{Spikes}_t + \xi
 \end{equation}
-The objective is to separate the signals such that the times of smooth non-congested operation, together with the recurring congestion are captured in the Background and passed through spectral smoothing, mitigating the estimation errors created by the high frequency oscillations and achieving a view of what can be daily observed, so seasonal patterns can be extracted in the shorter and longer periods shown in Fig. \ref{fig:ACF}.
+The objective is to separate the signals such that the times of smooth non-congested operation, together with the recurring congestion, are captured in the Background and passed through spectral smoothing, mitigating the estimation errors created by the high frequency oscillations and achieving a view of what can be daily observed, so seasonal patterns can be extracted in the shorter and longer periods shown in Fig. \ref{fig:ACF}.
 Meanwhile, the spikes, containing the non-recurring congestion, can be searched for any seasonality left time scales larger than the period in which the travel times oscillate, as also suggested by Fig. \ref{fig:ACF}. 
-If performed correctly, the remainder after this seasonal extraction step of the decomposition, should contain only isolated events with large deviations from the profile and white noise.
+If performed correctly, the remainder after this seasonal extraction step of the decomposition should contain only isolated events with large deviations from the profile and white noise.
 \subsection{Wavelet Time Series Decomposition}\label{decomposition}
 \begin{figure*}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/WT_combined_1500_600.png}}
@@ -205,8 +205,8 @@ If performed correctly, the remainder after this seasonal extraction step of the
 To perform the decomposition, we will take advantage of the additive properties of the wavelet transform. First the time series $\vec{x_t}$ of length $t$, and elements $x_i$ with $i \in [0,t]$ is turned into a zero mean series $\vec{x_t} - mean(\vec{x_t})$ and used as input for a Continuous Wavelet Transform (CWT) \cite{daubechies} \cite{mallat} using a Morse wavelet \cite{morse} and 140 timescales levels.
 The output of this first transform is a complex matrix $\vec{W}_{\textrm{levels}\,\times\, t}$, for the elements of which we calculate their modulus $\rho$, phase $\phi$ and power $P$. 
 A heatmap of $P^2$ for the original time series can be seen in the first subplot in Figure \ref{fig:wt}.
-In the figure we can observe that the most influential dynamics occurring during the series length (x axis), happen at the timescales (y axis) where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes).
-In the figure, we also observe that surges in power across different timescales occur at the same time as the non-recurring congestion, since in order to approximate this signal, the CWT algorithm needs to combine several wavelets with smaller periods than those dominating the recurring part of the series.
+In the figure we can observe that the most influential dynamics occurring during the series length (x axis) happen at the timescales (y axis) where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes).
+In the figure, we also observe that surges in power across different wavelet timescales occur at the same time as the non-recurring congestion, since in order to approximate this signal, the CWT algorithm needs to combine several wavelets with smaller periods than those dominating the recurring part of the series. 
 
 In order to isolate this non-recurring component, the series is sequentially assessed over all the time domain by taking a horizontal slice for a single timescale level $l$, and generating a series $\vec{x_{t}}^l$.
 After fixing $l$, we calculate the Median and Inter Quantile Range of $\vec{x_{t}}^l$ to search for outliers.
@@ -214,7 +214,7 @@ A maximum threshold value is set equal to $T = median(\vec{x_t}) + \alpha * IQR(
 Then, the individual elements of $\vec{x_{t}}^l$, $x_{i}^l$ are individually evaluated: if found below the limit, they are stored in a Background container $B_i^l = x_{i}^l$; otherwise, the fraction below the threshold will be nonetheless passed on to the background $\vec{B_i}^l = median(\vec{x_{t}}^l) + \alpha * IQR(\vec{x_{t}}^l)$, with the remaining part going into the Spikes storage $\vec{S_i}^l = x_{i}^l - B_{i}^l$.
 
 In the extremes, for $\alpha = 0$ we would find that any deviation from the median is taken into the spikes signal, and with $\alpha = \infty$ only points infinitely distant from the mean would be taken into the spikes.
-The results produced here were obtained with $\alpha=1$ to showcase the most basic setup and the effectiveness of even an non-tuned version.
+The results produced here were obtained with $\alpha=1$ to showcase the most basic setup and the effectiveness of even a non-tuned version.
 
 Once all levels have been processed in this manner, we use the previous information about $\phi$ to reconvert the two series from being characterised in terms of $(\rho, \phi)$ to the complex components of the DWT.
 After this step, we apply the Inverse DWT to $\vec{B_t}$ and $\vec{S_t}$, obtaining the two series that can be observed in Figure \ref{fig:splitting}.
@@ -222,7 +222,7 @@ After this step, we apply the Inverse DWT to $\vec{B_t}$ and $\vec{S_t}$, obtain
 The results of the separation of the background can be seen in Fig. \ref{fig:wt}. Here it can be observed that the separated background is still characterised by seasonality dominating the weekly (10080 minutes) and daily (1440 minutes) timescales, and keeping a very similar structure in the regions occupied by the faster dynamics ($<$ 120 minutes) to that of the original series.
 Simultaneously, the surges in Power across timescales of the original DWT-transformed series (left), which are associated with congestion events, have been greatly reduced or eliminated altogether in the second subplot.
 
-In the author's view, this demonstrates the applicability of the method to process a timeseries showing multiple seasonalities and punctuated by large deviations from the normal dynamics of the process into two separate series, one of which will exclusively contain the baseline dynamics of the process, respecting its structure and natural variability, and the other will only contain those large events that occur outside of the smooth operational region.
+In the author's view, this demonstrates the applicability of the method to process a timeseries showing multiple seasonalities and punctuated by large deviations from the normal dynamics of the process into two separate series, one of which will exclusively contain the baseline dynamics of the process, respecting its structure and natural variability, and the other, which will only contain those large events that occur outside of the smooth operational region.
 \subsection{Series Recombination}
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/Splitting.png}}
