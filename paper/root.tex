@@ -153,13 +153,13 @@ EWMA-based profiles have a main issue: disruptions after large events generated 
 	\label{fig:EWMA}
 \end{figure}
 Recent measurements receive exponentially greater weights than events farther in the past. 
-If an large deviation from the baseline patter occurs, subsequent estimations will have a bias towards partially replicating the deviation and consistently predicting over-estimates until newer data is included and the effect dissipates.
+If a large deviation from the baseline patter occurs, subsequent estimations will have a bias towards partially replicating the deviation and consistently predicting over-estimates until newer data is included and the effect dissipates.
 \subsection{Time-based Segmentation}\label{segmentation}
 Furthermore, to recognize and use the precise characteristics of specially distinct dates, these methods make heavy use of segmentation based on the date. 
-Days are grouped according to categories defined by traffic authorities and the EWMA is applied across dates following in the same category (i.e. Saturdays, weekdays, New Year, ...).
-This segmentation in classes, joint with the weakness commented in Section \ref{ewma} can generate lasting perturbations, propagating across weeks into future estimations, yet never being reflected on the travel times measurements. A reconstruction of this event is shown in Figure \ref{fig:EWMA}.
+Days are grouped according to categories defined by traffic authorities and the EWMA is applied across dates falling in the same category (i.e. Saturdays, weekdays, New Year, ...).
+This segmentation in classes, joined with the weakness commented in Section \ref{ewma} can generate lasting perturbations, propagating across weeks into future estimations, yet never being reflected on the travel times measurements. A reconstruction of this event is shown in Figure \ref{fig:EWMA}.
 Consequently, significant operational and geographical expertise about specific roads is needed to create a valid segmentation, given that the EWMA approach is effective exclusively for recurrent congestion. 
-These requirements often leads to the generation of legacy systems which become increasingly difficult to maintain as time passes, their usefulness declining over time or requiring additional efforts for continually train new staff to maintain the system.
+These requirements often lead to the generation of legacy systems which become increasingly difficult to maintain as time passes, their usefulness declining over time or requiring additional efforts for continually training new staff to maintain the system.
 These modelling and operational limitations make Segmentation and EWMA based profiles suboptimal both in performance and operation.
 \section{Data Selection and Contents}
 Motorways M6 and M11 in England were chosen due to their high use and their display of both recurrent and outstanding congestion, being key in several heavily used commuting routes. 
