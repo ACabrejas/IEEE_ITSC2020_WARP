@@ -117,7 +117,9 @@ Machine learning and statistical analysis methods receive the most attention \ci
 In machine learning, neural networks are recently having a high relevance \cite{NN} \cite{spectral2}.
 Other approaches are closer to the methods here presented: making use of historical data \cite{simple} \cite{dynamic-historic}, differentiating between rush and non-rush hour \cite{peak-historic}, using spectral methods \cite{spectral1} or Locally Weighted Regressions \cite{williams} \cite{sun} \cite{zhong} \cite{chowdhury} \cite{acqua} \cite{vana}.
 The Wavelet Transform  has been previously found to be useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or do not focus on the spectral properties across timescales or are not real-world data based.
-Relevant comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}. 
+Comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}, but they either focus on short-term prediction or do not produce an overall best-performer.
+The method here presented is distinct from the previous work mentioned, since it does not use a sample of individual trips, but all conducted over 12 weeks in multiple sites. 
+The aggregation period and prediction resolution is minutely, and the prediction horizon is larger.
 Among these methods, the transferability to other locations is not often evaluated, being tuned for a specific location with its own specific conditions.
 In order to ensure transferability, our method is examined on 39 individual locations across two motorways and independently scored for each site.
 The work presented here makes use of a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
@@ -284,7 +286,7 @@ Finally, the spikes are searched for any seasonality left on the weekly level $S
 
 \subsection{WARP Hybrid Profile}
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/flow_crop.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/flow_warp_crop.pdf}}
 	\caption{Flowchart of the data streams in the algorithm}
 	\label{fig:dataflow}
 \end{figure}
@@ -294,6 +296,7 @@ The final WARP profile, containing the spectral and seasonal components, depends
 \end{equation}
 
 \section{WARP model validation}
+
 \begin{table*}[bp]
 	\caption{MARE Distribution in M6 prediction}
 	\centering
@@ -320,7 +323,7 @@ The final WARP profile, containing the spectral and seasonal components, depends
 
 In this section we assess the performance of the WARP model in out-of-sample validation and compare it against a null model based on simple segmentation and against the published NTIS profiles (the details of which are not in the public domain.)
 
-\subsection{Simple Segmentation - null model)}
+\subsection{Simple Segmentation - null model}
 Our null model for assessment of the performance of the WARP model is a basic segmentation model that applies uniform weights to the training data in a given time interval from previous weeks. 
 On the $i-th$ minute of a week and using the previous $n$ weeks (8 in this paper) as training, the simple segmentation (SS) profile is:
 \begin{equation}
