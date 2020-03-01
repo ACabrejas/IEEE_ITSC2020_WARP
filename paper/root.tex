@@ -78,7 +78,7 @@ WARP method for separating recurrent and outstanding congestion in Motorways and
 
 
 \begin{abstract}
-Accurate highway travel times estimation is a requirement for a working for Advanced Traveler Information Systems (ATIS).
+Accurate highway travel times estimation is a requirement for working Advanced Traveler Information Systems.
 Here we present the WARP method for separating recurrent and outstanding congestion from a travel time time series using wavelet analysis, and then produce estimates for the following week in an accurate and computationally inexpensive manner. 
 We train and test this method using 12 weeks of real time travel data gathered at link level in the M6 and M11 in the United Kingdom.
 Our approach makes use of the travel time series gathered and published by the UK's National Traffic Information Service (NTIS) via time series analysis.
@@ -108,8 +108,10 @@ There is extensively available literature on travel times, albeit recent researc
 Machine learning and statistical analysis methods receive the most attention \cite{should}. In machine learning, neural networks are recently having a high relevance \cite{NN} \cite{spectral2}.
 Other approaches are closer to the methods here presented: making use of historical data \cite{simple} \cite{dynamic-historic}, differentiating between rush and non-rush hour \cite{peak-historic}, using spectral methods \cite{spectral1} or Locally Weighted Regressions \cite{williams} \cite{sun} \cite{zhong} \cite{chowdhury} \cite{acqua} \cite{vana}.
 Wavelet use has been previously found useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or do not focus on the spectral properties across timescales or are not real-world data based.
-Relevant comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}. 
-Among these methods, the transferability to other locations is not often evaluated, being tuned for a specific location with its own specific conditions.
+Comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}, but they either focus on short-term prediction or do not produce an overall best-performer.
+The method here presented is distinct from the previous work mentioned, since it does not use a sample of individual trips, but all conducted over 12 weeks in multiple sites. 
+The aggregation period and prediction resolution is minutely, and the prediction horizon is larger.
+Among the methods above, the transferability to other locations is not often evaluated, being tuned for a specific location with its own specific conditions. 
 In order to ensure transferability, our method is examined on 39 individual locations across two motorways and independently scored for each site.
 The work presented here makes use of a combination of Continuous Wavelet Transform \cite{morletwavelet}, tree decisions, spectral analysis, and Locally Weighted Regression (LWR).
 \section{Travel times in Motorways} \label{Travel times in Motorways}
@@ -271,7 +273,7 @@ Then, $T_r$, nearly flat as per \ref{algorithm}, is linearised to obtain a basel
 Finally, the Spikes are searched for any seasonality left on the weekly level $Sp_w$, discarding the trend and remainder terms, and obtaining the final seasonal component as $\textit{SEASONAL} = B_t + {Sp}_w$.
 \subsection{WARP Hybrid Profile}
 \begin{figure}[htbp]
-	\centerline{\includegraphics[width=\linewidth]{./images/flow_crop.pdf}}
+	\centerline{\includegraphics[width=\linewidth]{./images/flow_warp_crop.pdf}}
 	\caption{Flowchart of the data streams in the algorithm}
 	\label{fig:dataflow}
 \end{figure}
@@ -279,7 +281,7 @@ The final WARP profile, containing the Spectral and Seasonal components, depends
 \begin{equation}
 \textrm{WARP} = \textrm{Seasonal} * \delta_{\textrm{spike}} + \textrm{Spectral} * (1 - \delta_{\textrm{spike}})
 \end{equation}
-\section{Accuracy Results}
+\section{Model Validation}
 \begin{table*}[bp]
 	\caption{MARE Distribution in M6 prediction}
 	\centering
@@ -449,7 +451,6 @@ Given the flexibility offered by this method, it could be extended for incident 
 The estimation algorithm presented in the last sections meets the requirements described in Section \ref{algorithm} and earlier defined in \cite{ttprofiles}, albeit still using one parameter.
 In the future, sensitivity analysis could explore the limits of the algorithm in terms of minimum training data set, as well as maximum performance with increased training.
 
-\clearpage
 \begin{thebibliography}{00}
 \bibitem{NTIS} The Highways Agency, "National Transport Information System Publish Services", Technical Report, 2011. 
 \bibitem{ttprofiles} Cabrejas-Egea, A. , de Ford, P., \& Connaughton, C. (2018, November). Estimating Baseline Travel Times for the UK Strategic Road Network. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 531-536). IEEE.
