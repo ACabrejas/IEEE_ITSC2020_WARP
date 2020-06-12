@@ -3,7 +3,7 @@ Using Wavelets for incident detection and long term travel time forecasting.
 
 ## Introduction
 This repository contains the code and paper to be presented at the Intelligent Transportation Systems Conference 2020.
-All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Centre for Complexity Science (University of Warwick) and The Alan Turing Institute.
+All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Centre for Complexity Science (University of Warwick), The Alan Turing Institute and IEEE.
 
 ## Goals
 Take a dense time series of motorway travel times. 
