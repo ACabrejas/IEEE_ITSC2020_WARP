@@ -1,11 +1,10 @@
 # WARP: Wavelet Augmented Regression Profiling
-Using Wavelets for incident detection and long term travel time forecasting.
-
-## Introduction
 This repository contains the code and paper to be presented at the Intelligent Transportation Systems Conference 2020.
 All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Centre for Complexity Science (University of Warwick), The Alan Turing Institute and IEEE.
 
-## Goals
+This repository the paper "Wavelet Augmented Regression Profiling (WARP): improved long-term estimation of travel time series with recurrent congestion", accepted to IEEE International Conference in Intelligent Transport Systems (ITSC) 2020 as a pre-print, and the code that generated the results it presents for open replication purposes.
+
+## Goals in short
 Take a dense time series of motorway travel times. 
 Perform a continuous wavelet transform. 
 Calculate the power of each frequency-time pair and identify outliers (median+iqr), set them to the maximum threshold, while the difference with this value is taken into the Spikes series.
@@ -17,7 +16,7 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
 - Paper folder: Latex template with the written paper
 - Code folder: Scripts used to obtain all graphs in the paper. These should be run in order.
 
-## Running the code
+### Running the code
 1. Open R and Run 01Export_Link_to_CSV.R
   * Input : Clean Travel Time data
   * Output: 
