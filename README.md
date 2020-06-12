@@ -1,4 +1,4 @@
-# IEEE_Wavelets
+# WARP: Wavelet Augmented Regression Profiling
 Using Wavelets for incident detection and long term travel time forecasting.
 
 ## Introduction
