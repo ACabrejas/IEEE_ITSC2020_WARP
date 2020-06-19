@@ -97,10 +97,9 @@ In out-of-sample validation tests, WARP compares favourably to estimates produce
 In the United Kingdom, Highways England (HE) is responsible for most motorways and major roads in England, comprising the Strategic Road Network (SRN).
 The SRN is monitored by the National Traffic Information System \cite{NTIS}, which gathers and processes travel time, speed, flow and headway data in real time using road sensors and special vehicles.
 The smallest components of the SRN are the "links", segments of motorway ranging from 500 to 20000 metres long.
-NTIS uses the historic data  to assign each link in the network with a traffic profile.
+NTIS uses the historic data to assign each link in the network with a traffic profile.
 Traffic profiles contain, for each minute of a day in a given date, the expected travel time for the link to which it is associated. 
 These profile values are published together with the actually measured travel times.
-% but the methodology followed to calculate one from the other is not publicly available.
 
 Travel time profiles of heavily-used roads vary strongly depending on the time of the day and the day of the week.
 However their inter-week variation remains low, with major changes in usage patterns taking longer (order of months) than the biggest temporal unit considered (weeks). 
@@ -116,7 +115,7 @@ There is an extensive literature on travel times, although recent research is mo
 Machine learning and statistical analysis methods receive the most attention \cite{should}. 
 In machine learning, neural networks are recently having a high relevance \cite{NN} \cite{spectral2}.
 Other approaches are closer to the methods here presented: making use of historical data \cite{simple} \cite{dynamic-historic}, differentiating between rush and non-rush hour \cite{peak-historic}, using spectral methods \cite{spectral1} or Locally Weighted Regressions \cite{williams} \cite{sun} \cite{zhong} \cite{chowdhury} \cite{acqua} \cite{vana}.
-The Wavelet Transform  has been previously found to be useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or do not focus on the spectral properties across timescales or are not real-world data based.
+The Wavelet Transform has been previously found to be useful in combination with Kalman filters \cite{nonlinear}, neural networks \cite{samant} \cite{ghosh} \cite{hojjat} \cite{adeli} and statistical analysis \cite{basu} \cite{hang}; but these either cover short predictions, use the Wavelet analysis of travel times for other purposes such as incident detection, or do not focus on the spectral properties across timescales or are not real-world data based.
 Comparisons involving some of these studies are performed in \cite{nikovski}, \cite{lint}, \cite{mori} and \cite{ser}, but they either focus on short-term prediction or do not produce an overall best-performer.
 The method here presented is distinct from the previous work mentioned, since it does not use a sample of individual trips, but all conducted over 12 weeks in multiple sites. 
 The aggregation period and prediction resolution is minutely, and the prediction horizon is larger.
@@ -154,12 +153,12 @@ Then, the profile estimation $\hat{x}(i,d+1)$ for the $i-th$ minute of a date $d
 \begin{equation}
 \begin{aligned}
 \hat{x}^{d+1}_i \!&= \alpha  x^{d}_{i} + (1-\alpha)\hat{x}^{d}_{i} \\ 
-&= \alpha  x^{d}_{i} + \alpha^2  x^{d-1}_{i} + (1-\alpha - \alpha^2) \hat{x}^{d-1}_{i}\\ 
+&= \alpha  x^{d}_{i} + \alpha^2  x^{d-1}_{i} + (1-\alpha - \alpha^2) \hat{x}^{d-2}_{i}\\ 
 &= ...
 \end{aligned}
 \label{eq:ewma}
 \end{equation}
-EWMA-based profiles have a main issue: disruptions after large events generated due to the way in which the memory decays as we can see above in equation \ref{eq:ewma}.
+EWMA-based profiles have a main issue: disruptions after large events are generated due to the way in which the memory decays as we can see above in equation \ref{eq:ewma}.
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/EWMA.pdf}}
 	\caption{Skewed EWMA predictions after a large deviation.}
@@ -180,7 +179,7 @@ These modelling and operational limitations may make segmentation and EWMA based
 \section{Data Selection and Contents}
 The M6 and M11 motorways in England are chosen due to their high use and their display of both recurrent and outstanding congestion, being key in several heavily used commuting routes. 
 \begin{itemize}
-	\item The dataset aggregates 90 days (12 complete weeks) minutely entries (07/03/2016-05/06/2016).
+	\item The dataset aggregates 90 days (12 complete weeks) minutely entries (07/03/2016-05/06/2016). This length is chosen to minimise the effect of including other wider partially captured periodicities (e.g. natural seasons) during data gathering.
 	\item Links with over 10\% of data missing or containing access ramps were discarded.
 	\item The previous condition left 14 different links in the M6 and 25 links in the case of the M11.
 	\item Entries missing for 10 minutes or less were linearly interpolated.
@@ -189,18 +188,12 @@ The M6 and M11 motorways in England are chosen due to their high use and their d
 The algorithm uses 8 weeks of data to predict one entire week ahead.
 After a week, the oldest week is deleted, and the most recent one is incorporated, producing a new estimate for the subsequent week.
 This procedure is simulated 4 times.
-For each link-date pair, the data comprises minutely data, containing:
-\begin{itemize}
-	\item Average vehicle travel time in seconds
-	\item Profile (expected) travel time in seconds
-	\item Traffic Flow in cars/hour
-	\item Vehicle headway in meters
-\end{itemize}
+For each link-date pair, the data comprises minutely data, containing: average vehicle travel time in seconds, profile (expected) travel time in seconds, traffic flow in cars/hour and vehicle headway in meters.
 
 \section{Background and Spikes}
 \subsection{Characteristics}
-As described in \cite{ttprofiles}, if we look at the travel times, we find they operate in two different regimes that we call  background and spikes.
-The background is stable with small high-frequency fluctuations about a time-varying mean value.
+As described in \cite{ttprofiles}, if we look at the travel times, we find they operate in two different regimes that we call background and spikes.
+The background is stable with small high-frequency fluctuations around a time-varying mean value.
 This makes it suitable for seasonal analysis and spectral filtering (smoothing).
 In contrast, the spikes are zero most of the time but can quickly climb to extreme values. 
 They have much greater amplitude and much lower frequency, creating long reaching effects. 
@@ -213,21 +206,22 @@ In this context, if we assume Gaussian noise $\xi$, and given the additive prope
 The objective is to separate the signals such that the times of smooth non-congested operation, together with the recurring congestion, are captured in the background and passed through spectral smoothing, mitigating the estimation errors created by the high frequency oscillations and achieving a view of what can be daily observed, so seasonal patterns can be extracted in the shorter and longer periods shown in Fig. \ref{fig:ACF}.
 Meanwhile, the spikes, containing the non-recurring congestion, can be searched for any seasonality left on time scales larger than the period in which the travel times oscillate, as also suggested by Fig. \ref{fig:ACF}. 
 If performed correctly, the remainder after this seasonal extraction step of the decomposition should contain only isolated events with large deviations from the profile and white noise.
+Wavelets are especially well suited for this since they adapt to the relevant scales and location in time, not being a property that is found in a priori explicit forms (splines, polynomials, etc.).
 \subsection{Wavelet Time Series Decomposition}\label{decomposition}
 \begin{figure*}[htbp]
 	\centerline{\includegraphics[width=\linewidth]{./images/WT_combined_1500_600.png}}
-	\caption{Left: Power of DWT of the original Travel Time series for Link 1170079 of the M6.
-	Right: Power of DWT of the extracted Background $\vec{B_t}$ series, as detailed in Section \ref{decomposition}, for Link 1170079 of the M6}
+	\caption{Left: Power of CWT of the original Travel Time series for Link 1170079 of the M6.
+	Right: Power of CWT of the extracted Background $\vec{B_t}$ series, as detailed in Section \ref{decomposition}, for the same link, displaying more stable and periodic dynamics.}
 	\label{fig:wt}
 \end{figure*}
 To perform the decomposition, we will take advantage of the additive properties of the wavelet transform. First the time series $\vec{x_t}$ of length $t$, and elements $x_i$ with $i \in [0,t]$ is turned into a zero mean series $\vec{x_t} - mean(\vec{x_t})$ and used as input for a Continuous Wavelet Transform (CWT) \cite{daubechies} \cite{mallat} using a Morse wavelet \cite{morse} and 140 timescales levels.
 The output of this first transform is a complex matrix $\vec{W}_{\textrm{levels}\,\times\, t}$, for the elements of which we calculate their modulus $\rho$, phase $\phi$ and power $P$. 
 A heatmap of $P^2$ for the original time series can be seen in the first subplot in Figure \ref{fig:wt}.
-In the figure we can observe that the most influential dynamics occurring during the series length (x axis) happen at the timescales (y axis) where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes).
+In the figure we can observe that the most influential dynamics occurring during the series length (x axis) happen at the timescales (y axis) where it was expected based on Figure \ref{fig:ACF}, namely 1 day (1440 minutes) and 1 week (10080 minutes), based on the $P^2$ values on these bands.
 In the figure, we also observe that surges in power across different wavelet timescales occur at the same time as the non-recurring congestion, since in order to approximate this signal, the CWT algorithm needs to combine several wavelets with smaller periods than those dominating the recurring part of the series. 
 
 In order to isolate this non-recurring component, the series is sequentially assessed over all the time domain by taking a horizontal slice for a single timescale level $l$, and generating a series $\vec{x_{t}}^l$.
-After fixing $l$, we calculate the Median and Inter Quantile Range of $\vec{x_{t}}^l$ to search for outliers.
+After fixing $l$, we calculate the Median and Inter Quantile Range of the distribution of values in $\vec{x_{t}}^l$ to search for outliers.
 A maximum threshold value is set equal to $T = median(\vec{x_t}) + \alpha * IQR(\vec{x_{t}}^l)$, with $\alpha \in [0,\inf]$ being a parameter that defines how aggressively we target spikes. 
 Then, the individual elements of $\vec{x_{t}}^l$, $x_{i}^l$ are individually evaluated: if found below the limit, they are stored in a background container $B_i^l = x_{i}^l$; otherwise, the fraction below the threshold will be nonetheless passed on to the background $\vec{B_i}^l = median(\vec{x_{t}}^l) + \alpha * IQR(\vec{x_{t}}^l)$, with the remaining part going into the spikes storage $\vec{S_i}^l = x_{i}^l - B_{i}^l$.
 
@@ -494,7 +488,7 @@ In the future, sensitivity analysis could explore the limits of the algorithm in
 \bibitem{spectral2} Park, D. et al. 1999. Spectral basis neural networks for real-time travel time forecasting. Journal of Transportation Engineering, 125(6).
 \bibitem{simple} Rice, J., Van Zwet, E. 2004. A simple and effective method for predicting travel times on freeways. IEEE Transactions on Intelligent Transportation Systems, 5(3), 200-207.
 \bibitem{dynamic-historic} Chien, S. I. J. et al. 2003. Dynamic travel time prediction with real-time and historic data. Journal of transportation engineering, 129(6), 608-616.
-\bibitem{peak-historic} Zhang, Y. et al. 2011. Analysis of peak and non?peak traffic forecasts using combined models. Journal of Advanced Transportation, 45(1).
+\bibitem{peak-historic} Zhang, Y. et al. 2011. Analysis of peak and non-peak traffic forecasts using combined models. Journal of Advanced Transportation, 45(1).
 \bibitem{spectral1} Nicholson, H., Swann, C. D. 1974. The prediction of traffic flow volumes based on spectral analysis. Transportation Research, 8(6), 533-538.
 \bibitem{williams} Williams, B., Durvasula, P., Brown, D. 1998. Urban freeway traffic flow prediction: application of seasonal autoregressive integrated moving average and exponential smoothing models. Transportation Research Record: Journal of the Transportation Research Board, (1644), 132-141.
 \bibitem{sun} Sun, H., Liu, H. X., Xiao, H., He, R. R., Ran, B. 2003. Short term traffic forecasting using the local linear regression model. In 82nd Annual Meeting of the Transportation Research Board, Washington, DC.
