@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  19 JUN 2020 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  19 JUN 2020 18:21
 entering extended mode
 **./root.tex
 (root.tex
@@ -806,12 +806,16 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 519.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 519.
 Package rerunfilecheck Info: File `root.out' has not changed.
 (rerunfilecheck)             Checksum: 5D1C2CC6801829CA7008446C537F0083;1445.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 519.
  ) 
 Here is how much of TeX's memory you used:
  12437 strings out of 481553
  233754 string characters out of 2911008
- 492036 words of memory out of 3000000
+ 491880 words of memory out of 3000000
  27389 multiletter control sequences out of 15000+200000
  577293 words of font info for 124 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -837,7 +841,7 @@ ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb
 ><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/
 utmr8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on root.pdf (7 pages, 2051551 bytes).
+Output written on root.pdf (7 pages, 2051845 bytes).
 PDF statistics:
  347 PDF objects out of 1000 (max. 8388607)
  83 named destinations out of 1000 (max. 500000)
