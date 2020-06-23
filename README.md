@@ -26,8 +26,22 @@ Inverse transform both series, separating in this manner the recurrent from outs
 Use this separated series to train a forecasting algorithm with 8 weeks of data and predict the following 4.
 Assess the accuracy of the forecast, comparing with the published profiles and a null method.
 
+## Abstract in Full
+Reliable estimates of typical travel times allow road users to forward plan journeys to minimise travel time, potentially increasing overall system efficiency.
+On busy highways, however, congestion events can cause large, short-term spikes in travel time. 
+These spikes make direct forecasting of travel time using standard time series models difficult on the timescales of hours to days that are relevant to forward planning. 
+The problem is that some such spikes  are caused by unpredictable incidents and should be filtered out, whereas others are caused by recurrent peaks in demand and should be factored into estimates. 
+Here we present the Wavelet Augmented Regression Profiling (WARP) method for long-term estimation of typical travel times. 
+WARP linearly decomposes historical time series of travel times into two components: background and spikes. 
+It then further separates the spikes into contributions from recurrent and residual congestion. 
+This is achieved using a combination of wavelet transforms, spectral filtering and locally weighted regression.
+The background and recurrent congestion contributions are then used to estimate typical travel times with horizon of one week in an accurate and computationally inexpensive manner. 
+We train and test WARP on the M6 and M11 motorways in the United Kingdom using 12 weeks of link level travel time data obtained from the UK's National Traffic Information Service (NTIS).
+In out-of-sample validation tests, WARP compares favourably to estimates produced by a simple segmentation method and to the estimates published by NTIS.
+
 ## Contents
-- Paper folder: Latex template with the written paper
+- Paper folder: Latex template with the pre-print of the IEEE version of the full. paper
+- Paper_arXiv folder: Latex template with the ArXiv version of the full paper
 - Code folder: Scripts used to obtain all graphs in the paper. These should be run in order.
 
 ### Running the code
