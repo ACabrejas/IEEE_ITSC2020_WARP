@@ -5,6 +5,19 @@ All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Ce
 
 This repository the paper "Wavelet Augmented Regression Profiling (WARP): improved long-term estimation of travel time series with recurrent congestion", accepted to IEEE International Conference in Intelligent Transport Systems (ITSC) 2020 as a pre-print, and the code that generated the results it presents for open replication purposes.
 
+
+<object data="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">
+        <p>Full paper IEEE pre-print Version: <a href="https://github.com/ACabrejas/IEEE_ITSC2020_WARP/blob/master/paper/Submitted_ITSC2020_20200619_ACE_CPC.pdf">Read PDF</a>.</p>
+    </embed>
+</object>
+
+<object data="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">
+        <p>Full paper ArXiv pre-print Version: <a href="https://github.com/ACabrejas/IEEE_ITSC2020_WARP/blob/master/paper_arxiv/template.pdf">Read PDF</a>.</p>
+    </embed>
+</object>
+
 ## Goals in short
 Take a dense time series of motorway travel times. 
 Perform a continuous wavelet transform. 
@@ -51,10 +64,3 @@ Assess the accuracy of the forecast, comparing with the published profiles and a
     2. Average MARE and RMSE error per motorway
     3. Histogram of errors
     4. Table with % of samples following within different precision limits
-
-
-<object data="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
