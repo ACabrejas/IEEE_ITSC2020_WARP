@@ -3,7 +3,7 @@
 This repository contains the code and paper to be presented at the Intelligent Transportation Systems Conference 2020.
 All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Centre for Complexity Science (University of Warwick), The Alan Turing Institute and IEEE.
 
-This repository the paper "Wavelet Augmented Regression Profiling (WARP): improved long-term estimation of travel time series with recurrent congestion", accepted to IEEE International Conference in Intelligent Transport Systems (ITSC) 2020 as a pre-print, and the code that generated the results it presents for open replication purposes.
+This repository the paper "Wavelet Augmented Regression Profiling (WARP): improved long-term estimation of travel time series with recurrent congestion", accepted to 23rd IEEE International Conference on Intelligent Transport Systems (ITSC) 2020 as a pre-print, and the code that generated the results it presents for open replication purposes.
 
 
 <object data="https://github.com/ACabrejas/IEEE_Wavelets/blob/master/paper/images/M6_daytime_8_12.pdf" type="application/pdf" width="700px" height="700px">
