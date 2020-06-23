@@ -1,4 +1,5 @@
-# WARP: Wavelet Augmented Regression Profiling
+# Wavelet Augmented Regression Profiling (WARP): improved long-term estimation of travel time series with recurrent congestion
+
 This repository contains the code and paper to be presented at the Intelligent Transportation Systems Conference 2020.
 All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Centre for Complexity Science (University of Warwick), The Alan Turing Institute and IEEE.
 
